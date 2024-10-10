@@ -1,0 +1,4 @@
+export enum Config {
+  PORT = 'PORT',
+  JWT_SECRET = 'JWT_SECRET',
+}
