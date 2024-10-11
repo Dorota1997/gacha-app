@@ -5,12 +5,17 @@ import {
   PrimaryKey,
   BeforeCreate,
 } from '@mikro-orm/core';
-import bcrypt from 'bcrypt';
+import { hash } from 'bcrypt';
 
 @Entity({
   tableName: 'users',
 })
 export class User {
+  constructor(username: string, password: string) {
+    this.username = username;
+    this.password = password;
+  }
+
   @PrimaryKey({ type: 'uuid', defaultRaw: 'gen_random_uuid()' })
   uuid: string;
 
@@ -28,6 +33,6 @@ export class User {
       throw new Error('BCRYPT_SALT is invalid!');
     }
 
-    args.entity.password = await bcrypt.hash(args.entity.password, salt);
+    args.entity.password = await hash(args.entity.password, salt);
   }
 }
