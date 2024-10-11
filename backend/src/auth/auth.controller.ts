@@ -14,12 +14,14 @@ import { SignInDto } from 'src/common/dto/sign-in.dto';
 import { JwtAuthGuard } from 'src/common/guards/jwt-auth.guard';
 import { Public } from 'src/common/decorators/public.decorator';
 
-@Controller()
+@Controller({
+  path: 'auth',
+})
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Public()
-  @Post('auth/sign-in')
+  @Post('sign-in')
   async signIn(@Body() dto: SignInDto, @Response() response) {
     const user = await this.authService.validateUser(dto);
 
@@ -33,7 +35,7 @@ export class AuthController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Get('auth/profile')
+  @Get('profile')
   getProfile(@Request() request) {
     return request.user;
   }
