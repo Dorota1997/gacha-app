@@ -25,6 +25,8 @@ Users gather points to be able to roll prizes from gacha. Crafted with NestJS an
 \c DBNAME    - switch database
 \dt          - list tables
 \d TABLENAME - table schema
+
+PS: when you see `DB_NAME=# ` in terminal, you can also use SQL commands supported by PostgreSQL
 ```
 
 ### Resources
