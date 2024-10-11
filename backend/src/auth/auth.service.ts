@@ -1,32 +1,43 @@
+import { compare } from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { Injectable } from '@nestjs/common';
+import { EntityManager } from '@mikro-orm/core';
 
-import { UsersService } from 'src/users/users.service';
+import { User } from 'src/entities/user.entity';
+import { SignInDto } from 'src/common/dto/sign-in.dto';
 
 @Injectable()
 export class AuthService {
   constructor(
-    private usersService: UsersService,
     private jwtService: JwtService,
+    private em: EntityManager,
   ) {}
 
-  async validateUser(username: string, pass: string): Promise<any> {
-    const user = await this.usersService.findOne(username);
+  async validateUser({ username, password }: SignInDto): Promise<User | null> {
+    const userRepository = this.em.getRepository(User);
 
-    if (user && user.password === pass) {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { password, ...result } = user;
+    const user = await userRepository.findOne({ username });
 
-      return result;
+    if (!user) {
+      return null;
     }
 
-    return null;
+    const isPasswordValid = await compare(password, user.password);
+
+    if (!isPasswordValid) {
+      return null;
+    }
+
+    return user;
   }
 
-  async signIn(user: any) {
-    const payload = { username: user.username, sub: user.userId };
+  signUser(user: User) {
+    const { username, uuid } = user;
+
+    const payload = { username, sub: uuid };
 
     return {
+      username,
       token: this.jwtService.sign(payload),
     };
   }

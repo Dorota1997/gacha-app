@@ -3,9 +3,11 @@ import {
   Body,
   Post,
   Request,
+  Response,
   UseGuards,
   Controller,
 } from '@nestjs/common';
+import { StatusCodes as HTTP } from 'http-status-codes';
 
 import { AuthService } from './auth.service';
 import { SignInDto } from 'src/common/dto/sign-in.dto';
@@ -18,8 +20,16 @@ export class AuthController {
 
   @Public()
   @Post('auth/sign-in')
-  async login(@Body() dto: SignInDto) {
-    return this.authService.signIn(dto);
+  async signIn(@Body() dto: SignInDto, @Response() response) {
+    const user = await this.authService.validateUser(dto);
+
+    if (!user) {
+      return response.status(HTTP.UNAUTHORIZED).send();
+    }
+
+    const result = this.authService.signUser(user);
+
+    return response.status(HTTP.OK).send(result);
   }
 
   @UseGuards(JwtAuthGuard)
