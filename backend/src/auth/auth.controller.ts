@@ -39,4 +39,10 @@ export class AuthController {
   status(@Request() request) {
     return request.user;
   }
+
+  @UseGuards(JwtAuthGuard)
+  @Post('sign-out')
+  signOut(@Request() request, @Response() response) {
+    return response.status(HTTP.OK).send();
+  }
 }
