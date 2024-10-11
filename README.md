@@ -6,15 +6,16 @@ Users gather points to be able to roll prizes from gacha. Crafted with NestJS an
 
 1. Install dependencies.
 2. Create `.env` from `.env.example`.
-3. Run `npm run docker:up`.
-4. Run migrations & seeders.
+3. Create `mikro-orm.config.ts` from [example](./backend/mikro-orm.config.example.ts).
+4. Run `npm run docker:up`.
+5. Run migrations & seeders.
 
    ```
    npm run db:migration:sync
    npm run db:seed
    ```
 
-5. Start backend & frontend.
+6. Start backend & frontend.
 
 ### PostgreSQL
 
