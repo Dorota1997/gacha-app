@@ -13,6 +13,8 @@ import { AuthService } from './auth.service';
 import { SignInDto } from 'src/common/dto/sign-in.dto';
 import { JwtAuthGuard } from 'src/common/guards/jwt-auth.guard';
 import { Public } from 'src/common/decorators/public.decorator';
+import { signInSchema } from 'src/common/schemas/sign-in.schema';
+import { YupValidationPipe } from 'src/common/pipes/yup-validation.pipe';
 
 @Controller({
   path: 'auth',
@@ -22,7 +24,10 @@ export class AuthController {
 
   @Public()
   @Post('sign-in')
-  async signIn(@Body() dto: SignInDto, @Response() response) {
+  async signIn(
+    @Body(new YupValidationPipe(signInSchema)) dto: SignInDto,
+    @Response() response,
+  ) {
     const user = await this.authService.validateUser(dto);
 
     if (!user) {
@@ -42,7 +47,7 @@ export class AuthController {
 
   @UseGuards(JwtAuthGuard)
   @Post('sign-out')
-  signOut(@Request() request, @Response() response) {
+  signOut(@Response() response) {
     return response.status(HTTP.OK).send();
   }
 }
