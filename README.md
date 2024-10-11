@@ -17,17 +17,33 @@ Users gather points to be able to roll prizes from gacha. Crafted with NestJS an
 
 6. Start backend & frontend.
 
-### PostgreSQL
+### FAQ
 
-```
-> psql gacha_db root
+- How to enable HMR (Hot Module Reload) in `backend`?
 
-\c DBNAME    - switch database
-\dt          - list tables
-\d TABLENAME - table schema
+  Use `npm run start:dev` that has `--watch` flag. If you want to use webpack HMR please note that it's not compatible with `TsMorphMetadataProvider`
 
-PS: when you see `DB_NAME=# ` in terminal, you can also use SQL commands supported by PostgreSQL
-```
+- How can I reset database?
+
+  Execute `npm run db:reset` script followed by `npm run db:seed:dev`
+
+- How can I register another alias in `backend`?
+
+  You need to put it in `paths` section in [tsconfig.json](./backend/tsconfig.json) and then reflect it in [package.json](./backend/package.json) under `_moduleAliases`
+
+- How do I view PostgreSQL data?
+
+  First, access PostgreSQL service by using `docker exec` or `Docker Desktop`. Afterwards refer to cheatsheet below:
+
+  ```
+  > psql gacha_db root
+
+  \c DBNAME    - switch database
+  \dt          - list tables
+  \d TABLENAME - table schema
+
+  PS: when you see `DB_NAME=# ` in terminal, you can also use SQL commands supported by PostgreSQL
+  ```
 
 ### Resources
 
