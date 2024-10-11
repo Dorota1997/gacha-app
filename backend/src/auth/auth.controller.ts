@@ -35,8 +35,14 @@ export class AuthController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Get('profile')
-  getProfile(@Request() request) {
+  @Get('status')
+  status(@Request() request) {
     return request.user;
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Post('sign-out')
+  signOut(@Request() request, @Response() response) {
+    return response.status(HTTP.OK).send();
   }
 }
