@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import 'module-alias/register';
 
 import { SeedManager } from '@mikro-orm/seeder';
 import { Migrator } from '@mikro-orm/migrations';
