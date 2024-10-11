@@ -1,22 +1,22 @@
 import { compare } from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { Injectable } from '@nestjs/common';
-import { EntityManager } from '@mikro-orm/core';
 
 import { User } from 'src/entities/user.entity';
 import { SignInDto } from 'src/common/dto/sign-in.dto';
+import { InjectRepository } from '@mikro-orm/nestjs';
+import { EntityRepository } from '@mikro-orm/postgresql';
 
 @Injectable()
 export class AuthService {
   constructor(
     private jwtService: JwtService,
-    private em: EntityManager,
+    @InjectRepository(User)
+    private readonly userRepository: EntityRepository<User>,
   ) {}
 
   async validateUser({ username, password }: SignInDto): Promise<User | null> {
-    const userRepository = this.em.getRepository(User);
-
-    const user = await userRepository.findOne({ username });
+    const user = await this.userRepository.findOne({ username });
 
     if (!user) {
       return null;
