@@ -8,9 +8,9 @@ import {
 } from '@nestjs/common';
 
 import { AuthService } from './auth.service';
-import { SignInDto } from './dto/sign-in.dto';
-import { Public } from 'src/common/decorators/Public';
+import { SignInDto } from 'src/common/dto/sign-in.dto';
 import { JwtAuthGuard } from 'src/common/guards/jwt-auth.guard';
+import { Public } from 'src/common/decorators/public.decorator';
 
 @Controller()
 export class AuthController {
