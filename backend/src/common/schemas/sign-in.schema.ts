@@ -1,6 +1,6 @@
 import { object, ObjectSchema, string } from 'yup';
 
-import { SignInDto } from '../dto/sign-in.dto';
+import { SignInDto } from '@/common/dto/sign-in.dto';
 
 export const signInSchema: ObjectSchema<SignInDto> = object({
   username: string().required(),

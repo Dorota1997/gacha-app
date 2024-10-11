@@ -6,7 +6,7 @@ import { PassportModule } from '@nestjs/passport';
 import { AuthService } from './auth.service';
 import { JwtStrategy } from './jwt.strategy';
 import { AuthController } from './auth.controller';
-import { Config } from 'src/common/enums/config.enum';
+import { Config } from '@/common/enums/config.enum';
 
 @Module({
   imports: [

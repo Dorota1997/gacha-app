@@ -1,6 +1,6 @@
 import { object, ObjectSchema, ref, string } from 'yup';
 
-import { SignUpDto } from '../dto/sign-up.dto';
+import { SignUpDto } from '@/common/dto/sign-up.dto';
 
 export const useSignUpSchema: () => ObjectSchema<SignUpDto> = () =>
   object({

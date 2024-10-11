@@ -3,7 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
 
-import { Config } from 'src/common/enums/config.enum';
+import { Config } from '@/common/enums/config.enum';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {

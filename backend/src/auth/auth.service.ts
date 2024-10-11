@@ -3,8 +3,8 @@ import { JwtService } from '@nestjs/jwt';
 import { Injectable } from '@nestjs/common';
 
 import { EntityManager } from '@mikro-orm/core';
-import { User } from 'src/entities/user.entity';
-import { SignInDto } from 'src/common/dto/sign-in.dto';
+import { User } from '@/entities/user.entity';
+import { SignInDto } from '@/common/dto/sign-in.dto';
 
 @Injectable()
 export class AuthService {

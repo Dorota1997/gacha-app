@@ -10,11 +10,11 @@ import {
 import { StatusCodes as HTTP } from 'http-status-codes';
 
 import { AuthService } from './auth.service';
-import { SignInDto } from 'src/common/dto/sign-in.dto';
-import { JwtAuthGuard } from 'src/common/guards/jwt-auth.guard';
-import { Public } from 'src/common/decorators/public.decorator';
-import { signInSchema } from 'src/common/schemas/sign-in.schema';
-import { YupValidationPipe } from 'src/common/pipes/yup-validation.pipe';
+import { SignInDto } from '@/common/dto/sign-in.dto';
+import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
+import { Public } from '@/common/decorators/public.decorator';
+import { signInSchema } from '@/common/schemas/sign-in.schema';
+import { YupValidationPipe } from '@/common/pipes/yup-validation.pipe';
 
 @Controller({
   path: 'auth',

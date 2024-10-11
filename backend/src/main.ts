@@ -1,10 +1,11 @@
 import 'reflect-metadata';
+import 'module-alias/register';
 
 import { NestFactory } from '@nestjs/core';
 import { ConfigService } from '@nestjs/config';
 
-import { AppModule } from './app.module';
-import { Config } from './common/enums/config.enum';
+import { AppModule } from '@/app.module';
+import { Config } from '@/common/enums/config.enum';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
