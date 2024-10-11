@@ -4,6 +4,8 @@ import { StatusCodes as HTTP } from 'http-status-codes';
 import { UsersService } from './users.service';
 import { SignUpDto } from 'src/common/dto/sign-up.dto';
 import { Public } from 'src/common/decorators/public.decorator';
+import { useSignUpSchema } from 'src/common/schemas/sign-up.schema';
+import { YupValidationPipe } from 'src/common/pipes/yup-validation.pipe';
 
 @Controller({
   path: 'users',
@@ -13,7 +15,10 @@ export class UsersController {
 
   @Public()
   @Post('sign-up')
-  async signIn(@Body() dto: SignUpDto, @Response() response) {
+  async signIn(
+    @Body(new YupValidationPipe(useSignUpSchema())) dto: SignUpDto,
+    @Response() response,
+  ) {
     const user = await this.userService.signUp(dto);
 
     return response.status(HTTP.CREATED).send(user);
