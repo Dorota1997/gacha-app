@@ -1,4 +1,11 @@
-import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
+import {
+  Entity,
+  Property,
+  EventArgs,
+  PrimaryKey,
+  BeforeCreate,
+} from '@mikro-orm/core';
+import bcrypt from 'bcrypt';
 
 @Entity({
   tableName: 'users',
@@ -10,6 +17,17 @@ export class User {
   @Property()
   username!: string;
 
-  @Property()
+  @Property({ hidden: true })
   password!: string;
+
+  @BeforeCreate()
+  async onBeforeCreate(args: EventArgs<this>) {
+    const salt = parseInt(process.env.BCRYPT_SALT);
+
+    if (!salt) {
+      throw new Error('BCRYPT_SALT is invalid!');
+    }
+
+    args.entity.password = await bcrypt.hash(args.entity.password, salt);
+  }
 }
