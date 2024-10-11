@@ -24,7 +24,7 @@
     "db:migration:revert": "npx mikro-orm migration:down",
     "db:migration:list": "npx mikro-orm migration:list",
     "db:reset": "npx mikro-orm migration:fresh",
-    "db:seed": "npx mikro-orm seeder:run --class=UserSeeder"
+    "db:seed:dev": "npx mikro-orm seeder:run --class=DevSeeder"
   },
   "dependencies": {
     "@mikro-orm/cli": "^6.3.13",
