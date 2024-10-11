@@ -1,7 +1,7 @@
 import { ObjectSchema } from 'yup';
 import { BadRequestException, PipeTransform } from '@nestjs/common';
 
-import { formatError } from '../helpers/format-error.helper';
+import { formatError } from '@/common/helpers/format-error.helper';
 
 export class YupValidationPipe implements PipeTransform {
   constructor(private schema: ObjectSchema<any>) {}
