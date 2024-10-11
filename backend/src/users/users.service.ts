@@ -1,25 +1,18 @@
 import { Injectable } from '@nestjs/common';
+import { EntityManager } from '@mikro-orm/core';
 
-// @TMP
-export type User = any;
+import { User } from 'src/entities/user.entity';
+import { SignUpDto } from 'src/common/dto/sign-up.dto';
 
 @Injectable()
 export class UsersService {
-  // @TMP
-  private readonly users = [
-    {
-      userId: 1,
-      username: 'john',
-      password: 'changeme',
-    },
-    {
-      userId: 2,
-      username: 'maria',
-      password: 'guess',
-    },
-  ];
+  constructor(private readonly entityManager: EntityManager) {}
 
-  async findOne(username: string): Promise<User | undefined> {
-    return this.users.find((user) => user.username === username);
+  async signUp({ username, password }: SignUpDto): Promise<User> {
+    const user = new User(username, password);
+
+    await this.entityManager.persist(user).flush();
+
+    return user;
   }
 }
