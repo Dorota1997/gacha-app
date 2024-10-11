@@ -3,27 +3,39 @@ import {
   Body,
   Post,
   Request,
+  Response,
   UseGuards,
   Controller,
 } from '@nestjs/common';
+import { StatusCodes as HTTP } from 'http-status-codes';
 
 import { AuthService } from './auth.service';
 import { SignInDto } from 'src/common/dto/sign-in.dto';
 import { JwtAuthGuard } from 'src/common/guards/jwt-auth.guard';
 import { Public } from 'src/common/decorators/public.decorator';
 
-@Controller()
+@Controller({
+  path: 'auth',
+})
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Public()
-  @Post('auth/sign-in')
-  async login(@Body() dto: SignInDto) {
-    return this.authService.signIn(dto);
+  @Post('sign-in')
+  async signIn(@Body() dto: SignInDto, @Response() response) {
+    const user = await this.authService.validateUser(dto);
+
+    if (!user) {
+      return response.status(HTTP.UNAUTHORIZED).send();
+    }
+
+    const result = this.authService.signUser(user);
+
+    return response.status(HTTP.OK).send(result);
   }
 
   @UseGuards(JwtAuthGuard)
-  @Get('auth/profile')
+  @Get('profile')
   getProfile(@Request() request) {
     return request.user;
   }
