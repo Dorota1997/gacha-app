@@ -26,3 +26,10 @@ Users gather points to be able to roll prizes from gacha. Crafted with NestJS an
 \dt          - list tables
 \d TABLENAME - table schema
 ```
+
+### Resources
+
+- [NestJS docs](https://docs.nestjs.com/techniques/configuration)
+- [MikroORM docs](https://mikro-orm.io/)
+- [NestJS project structure](https://github.com/CatsMiaow/nestjs-project-structure)
+- [NestJS + MikroORM realworld example](https://github.com/mikro-orm/nestjs-realworld-example-app)
