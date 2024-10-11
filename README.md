@@ -12,7 +12,7 @@ Users gather points to be able to roll prizes from gacha. Crafted with NestJS an
 
    ```
    npm run db:migration:sync
-   npm run db:seed
+   npm run db:seed:dev
    ```
 
 6. Start backend & frontend.
