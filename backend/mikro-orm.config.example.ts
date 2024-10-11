@@ -14,7 +14,7 @@ export default defineConfig({
   dbName: process.env.POSTGRES_DATABASE,
   entities: ['./dist/**/*.entity.js'],
   entitiesTs: ['./src/**/*.entity.ts'],
-  debug: false,
+  debug: true,
   highlighter: new SqlHighlighter(),
   // @NOTE TsMorphMetadataProvider is not compatible with webpack
   metadataProvider: TsMorphMetadataProvider,
