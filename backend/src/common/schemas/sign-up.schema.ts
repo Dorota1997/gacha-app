@@ -5,6 +5,7 @@ import { SignUpDto } from '../dto/sign-up.dto';
 export const useSignUpSchema: () => ObjectSchema<SignUpDto> = () =>
   object({
     // @TODO check if username is not taken already!!
+    // @TODO introduce custom error messages
     username: string().required().min(4).max(40),
     password: string()
       .required()
