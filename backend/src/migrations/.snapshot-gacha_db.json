@@ -16,6 +16,109 @@
           "default": "gen_random_uuid()",
           "mappedType": "uuid"
         },
+        "name": {
+          "name": "name",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 255,
+          "mappedType": "string"
+        },
+        "quantity": {
+          "name": "quantity",
+          "type": "int",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "integer"
+        },
+        "chance": {
+          "name": "chance",
+          "type": "real",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "float"
+        }
+      },
+      "name": "rewards",
+      "schema": "public",
+      "indexes": [
+        {
+          "keyName": "rewards_pkey",
+          "columnNames": [
+            "uuid"
+          ],
+          "composite": false,
+          "constraint": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {},
+      "nativeEnums": {}
+    },
+    {
+      "columns": {
+        "uuid": {
+          "name": "uuid",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "default": "gen_random_uuid()",
+          "mappedType": "uuid"
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "enumItems": [
+            "Admin",
+            "Member"
+          ],
+          "mappedType": "enum"
+        }
+      },
+      "name": "roles",
+      "schema": "public",
+      "indexes": [
+        {
+          "keyName": "roles_pkey",
+          "columnNames": [
+            "uuid"
+          ],
+          "composite": false,
+          "constraint": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {},
+      "nativeEnums": {}
+    },
+    {
+      "columns": {
+        "uuid": {
+          "name": "uuid",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "default": "gen_random_uuid()",
+          "mappedType": "uuid"
+        },
         "username": {
           "name": "username",
           "type": "varchar(255)",
@@ -35,6 +138,35 @@
           "nullable": false,
           "length": 255,
           "mappedType": "string"
+        },
+        "tickets": {
+          "name": "tickets",
+          "type": "int",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "default": "0",
+          "mappedType": "integer"
+        },
+        "points": {
+          "name": "points",
+          "type": "int",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "default": "0",
+          "mappedType": "integer"
+        },
+        "role_uuid": {
+          "name": "role_uuid",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "uuid"
         }
       },
       "name": "users",
@@ -52,7 +184,87 @@
         }
       ],
       "checks": [],
-      "foreignKeys": {},
+      "foreignKeys": {
+        "users_role_uuid_foreign": {
+          "constraintName": "users_role_uuid_foreign",
+          "columnNames": [
+            "role_uuid"
+          ],
+          "localTableName": "public.users",
+          "referencedColumnNames": [
+            "uuid"
+          ],
+          "referencedTableName": "public.roles",
+          "updateRule": "cascade"
+        }
+      },
+      "nativeEnums": {}
+    },
+    {
+      "columns": {
+        "user_uuid": {
+          "name": "user_uuid",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "uuid"
+        },
+        "reward_uuid": {
+          "name": "reward_uuid",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "uuid"
+        }
+      },
+      "name": "users_rewards",
+      "schema": "public",
+      "indexes": [
+        {
+          "keyName": "users_rewards_pkey",
+          "columnNames": [
+            "user_uuid",
+            "reward_uuid"
+          ],
+          "composite": true,
+          "constraint": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {
+        "users_rewards_user_uuid_foreign": {
+          "constraintName": "users_rewards_user_uuid_foreign",
+          "columnNames": [
+            "user_uuid"
+          ],
+          "localTableName": "public.users_rewards",
+          "referencedColumnNames": [
+            "uuid"
+          ],
+          "referencedTableName": "public.users",
+          "deleteRule": "cascade",
+          "updateRule": "cascade"
+        },
+        "users_rewards_reward_uuid_foreign": {
+          "constraintName": "users_rewards_reward_uuid_foreign",
+          "columnNames": [
+            "reward_uuid"
+          ],
+          "localTableName": "public.users_rewards",
+          "referencedColumnNames": [
+            "uuid"
+          ],
+          "referencedTableName": "public.rewards",
+          "deleteRule": "cascade",
+          "updateRule": "cascade"
+        }
+      },
       "nativeEnums": {}
     }
   ],
