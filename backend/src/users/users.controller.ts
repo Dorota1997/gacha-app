@@ -21,6 +21,8 @@ export class UsersController {
   ) {
     const user = await this.userService.signUp(dto);
 
+    // @TODO implement email verification
+
     return response.status(HTTP.CREATED).send(user);
   }
 }
