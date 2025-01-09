@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-export class CreateRewardDto {
+export class AppendRewardDto {
   @ApiProperty()
   name: string;
 
