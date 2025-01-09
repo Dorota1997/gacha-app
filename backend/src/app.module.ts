@@ -1,11 +1,12 @@
-import { Module } from '@nestjs/common';
-import { APP_GUARD } from '@nestjs/core';
-import { ConfigModule } from '@nestjs/config';
 import { MikroOrmModule } from '@mikro-orm/nestjs';
+import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { APP_GUARD } from '@nestjs/core';
 
 import { AuthModule } from '@/auth/auth.module';
-import { UsersModule } from '@/users/users.module';
 import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
+import { UsersModule } from '@/users/users.module';
+import { RewardsModule } from './rewards/rewards.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
     MikroOrmModule.forRoot(),
     AuthModule,
     UsersModule,
+    RewardsModule,
   ],
   providers: [
     {
