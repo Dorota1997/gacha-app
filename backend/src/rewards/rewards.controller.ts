@@ -12,13 +12,13 @@ import { useAddRewardSchema } from '@/common/schemas/append-reward.schema';
 export class RewardsController {
   constructor(private readonly rewardsService: RewardsService) {}
 
-  @Post('create')
   @Post()
   async create(
     @Body(new YupValidationPipe(useAddRewardSchema()))
     data: AddRewardDto,
     @Response() response,
   ) {
+    const reward = await this.rewardsService.save(data);
 
     return response.status(HTTP.CREATED).send(reward);
   }
