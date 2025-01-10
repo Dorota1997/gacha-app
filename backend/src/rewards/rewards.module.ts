@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
-import { RewardsController } from './rewards.controller';
+
 import { RewardsService } from './rewards.service';
+import { RewardsController } from './rewards.controller';
 
 @Module({
   imports: [],

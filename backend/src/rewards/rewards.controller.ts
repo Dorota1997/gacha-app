@@ -1,9 +1,10 @@
-import { useAddRewardSchema } from '@/common/schemas/append-reward.schema';
-import { YupValidationPipe } from '@/common/pipes/yup-validation.pipe';
-import { Body, Controller, Post, Response } from '@nestjs/common';
-import { AddRewardDto } from '@/common/dto/add-reward.dto';
 import { StatusCodes as HTTP } from 'http-status-codes';
+import { Body, Controller, Post, Response } from '@nestjs/common';
+
 import { RewardsService } from './rewards.service';
+import { AddRewardDto } from '@/common/dto/add-reward.dto';
+import { YupValidationPipe } from '@/common/pipes/yup-validation.pipe';
+import { useAddRewardSchema } from '@/common/schemas/append-reward.schema';
 
 @Controller({
   path: 'rewards',

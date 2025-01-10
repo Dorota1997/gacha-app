@@ -1,7 +1,8 @@
-import { AddRewardDto } from '@/common/dto/add-reward.dto';
-import { Reward } from '@/entities/reward.entity';
-import { EntityManager } from '@mikro-orm/core';
 import { Injectable } from '@nestjs/common';
+import { EntityManager } from '@mikro-orm/core';
+
+import { Reward } from '@/entities/reward.entity';
+import { AddRewardDto } from '@/common/dto/add-reward.dto';
 
 @Injectable()
 export class RewardsService {
