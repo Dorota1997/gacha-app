@@ -13,10 +13,11 @@ export class RewardsController {
 
   @Post('create')
   async create(
-    @Body(new YupValidationPipe(useAddRewardSchema())) dto: AddRewardDto,
+    @Body(new YupValidationPipe(useAddRewardSchema()))
+    addRewardDto: AddRewardDto,
     @Response() response,
   ) {
-    const reward = await this.rewardsService.append(dto);
+    const reward = await this.rewardsService.save(addRewardDto);
 
     return response.status(HTTP.CREATED).send(reward);
   }

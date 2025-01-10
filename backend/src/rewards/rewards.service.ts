@@ -7,7 +7,7 @@ import { Injectable } from '@nestjs/common';
 export class RewardsService {
   constructor(private readonly entityManager: EntityManager) {}
 
-  async append({ name, quantity, chance }: AddRewardDto): Promise<Reward> {
+  async save({ name, quantity, chance }: AddRewardDto): Promise<Reward> {
     const reward = new Reward(name, quantity, chance);
 
     await this.entityManager.persist(reward).flush();
