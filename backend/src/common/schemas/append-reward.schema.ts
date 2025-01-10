@@ -1,7 +1,7 @@
 import { number, object, ObjectSchema, string } from 'yup';
-import { AppendRewardDto } from '../dto/append-reward.dto';
+import { AddRewardDto } from '@/common/dto/add-reward.dto';
 
-export const useAppendRewardSchema: () => ObjectSchema<AppendRewardDto> = () =>
+export const useAddRewardSchema: () => ObjectSchema<AddRewardDto> = () =>
   object({
     name: string().required(),
     quantity: number().required(),

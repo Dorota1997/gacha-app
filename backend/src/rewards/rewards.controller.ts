@@ -1,10 +1,10 @@
 import { Public } from '@/common/decorators/public.decorator';
 import { YupValidationPipe } from '@/common/pipes/yup-validation.pipe';
-import { useAppendRewardSchema } from '@/common/schemas/append-reward.schema';
+import { useAddRewardSchema } from '@/common/schemas/append-reward.schema';
 import { Body, Controller, Post, Response } from '@nestjs/common';
 import { StatusCodes as HTTP } from 'http-status-codes';
 import { RewardsService } from './rewards.service';
-import { AppendRewardDto } from '@/common/dto/append-reward.dto';
+import { AddRewardDto } from '@/common/dto/add-reward.dto';
 
 @Controller({
   path: 'rewards',
@@ -15,7 +15,7 @@ export class RewardsController {
   @Public()
   @Post('create')
   async create(
-    @Body(new YupValidationPipe(useAppendRewardSchema())) dto: AppendRewardDto,
+    @Body(new YupValidationPipe(useAddRewardSchema())) dto: AddRewardDto,
     @Response() response,
   ) {
     const reward = await this.rewardsService.append(dto);
