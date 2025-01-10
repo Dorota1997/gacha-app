@@ -1,5 +1,5 @@
-import { Body, Post, Response, Controller } from '@nestjs/common';
 import { StatusCodes as HTTP } from 'http-status-codes';
+import { Body, Post, Response, Controller } from '@nestjs/common';
 
 import { UsersService } from './users.service';
 import { SignUpDto } from '@/common/dto/sign-up.dto';

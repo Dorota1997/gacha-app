@@ -5,6 +5,7 @@ import { MikroOrmModule } from '@mikro-orm/nestjs';
 
 import { AuthModule } from '@/auth/auth.module';
 import { UsersModule } from '@/users/users.module';
+import { RewardsModule } from '@/rewards/rewards.module';
 import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
 
 @Module({
@@ -15,6 +16,7 @@ import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
     MikroOrmModule.forRoot(),
     AuthModule,
     UsersModule,
+    RewardsModule,
   ],
   providers: [
     {
