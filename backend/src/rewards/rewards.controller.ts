@@ -13,12 +13,12 @@ export class RewardsController {
   constructor(private readonly rewardsService: RewardsService) {}
 
   @Post('create')
+  @Post()
   async create(
     @Body(new YupValidationPipe(useAddRewardSchema()))
-    addRewardDto: AddRewardDto,
+    data: AddRewardDto,
     @Response() response,
   ) {
-    const reward = await this.rewardsService.save(addRewardDto);
 
     return response.status(HTTP.CREATED).send(reward);
   }
