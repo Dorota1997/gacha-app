@@ -1,5 +1,5 @@
 import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
-import { RewardsModule } from './rewards/rewards.module';
+import { RewardsModule } from '@/rewards/rewards.module';
 import { UsersModule } from '@/users/users.module';
 import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { AuthModule } from '@/auth/auth.module';
