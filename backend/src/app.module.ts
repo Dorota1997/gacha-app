@@ -1,12 +1,11 @@
+import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
+import { RewardsModule } from './rewards/rewards.module';
+import { UsersModule } from '@/users/users.module';
 import { MikroOrmModule } from '@mikro-orm/nestjs';
-import { Module } from '@nestjs/common';
+import { AuthModule } from '@/auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { APP_GUARD } from '@nestjs/core';
-
-import { AuthModule } from '@/auth/auth.module';
-import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
-import { UsersModule } from '@/users/users.module';
-import { RewardsModule } from './rewards/rewards.module';
+import { Module } from '@nestjs/common';
 
 @Module({
   imports: [
