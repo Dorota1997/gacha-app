@@ -15,4 +15,8 @@ export class RewardsService {
 
     return reward;
   }
+
+  findOne(uuid: string): Promise<Reward | null> {
+    return this.entityManager.findOne(Reward, uuid);
+  }
 }
