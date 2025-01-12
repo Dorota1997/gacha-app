@@ -1,5 +1,5 @@
 import { StatusCodes as HTTP } from 'http-status-codes';
-import { Body, Controller, Patch, Post, Response } from '@nestjs/common';
+import { Body, Controller, Param, Patch, Post, Response } from '@nestjs/common';
 
 import { RewardsService } from './rewards.service';
 import { AddRewardDto } from '@/common/dto/add-reward.dto';
@@ -25,13 +25,14 @@ export class RewardsController {
     return response.status(HTTP.CREATED).send(reward);
   }
 
-  @Patch('update-name')
+  @Patch(':id/update-name')
   async update(
+    @Param('id') id: string,
     @Body(new YupValidationPipe(useUpdateRewardNameSchema()))
     data: UpdateRewardNameDto,
     @Response() response,
   ) {
-    const reward = await this.rewardsService.findOne(data.id);
+    const reward = await this.rewardsService.findOne(id);
 
     if (!reward) {
       return response.statuts(HTTP.NOT_FOUND).send();
