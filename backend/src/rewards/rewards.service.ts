@@ -25,4 +25,10 @@ export class RewardsService {
 
     await this.entityManager.flush();
   }
+
+  async updateQuantity(reward: Reward, quantity) {
+    this.entityManager.assign(reward, { quantity });
+
+    await this.entityManager.flush();
+  }
 }
