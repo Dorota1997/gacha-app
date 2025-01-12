@@ -26,7 +26,7 @@ export class RewardsController {
   }
 
   @Patch(':id/update-name')
-  async update(
+  async updateName(
     @Param('id') id: string,
     @Body(new YupValidationPipe(useUpdateRewardNameSchema()))
     data: UpdateRewardNameDto,
