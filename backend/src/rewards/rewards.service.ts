@@ -20,9 +20,9 @@ export class RewardsService {
     return this.entityManager.findOne(Reward, uuid);
   }
 
-  updateName(reward: Reward, name) {
     wrap(reward).assign({ name });
+  async updateName(reward: Reward, name) {
 
-    this.entityManager.flush();
+    await this.entityManager.flush();
   }
 }
