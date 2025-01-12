@@ -4,9 +4,11 @@ import { Body, Controller, Param, Patch, Post, Response } from '@nestjs/common';
 import { RewardsService } from './rewards.service';
 import { AddRewardDto } from '@/common/dto/add-reward.dto';
 import { YupValidationPipe } from '@/common/pipes/yup-validation.pipe';
+import { useAddRewardSchema } from '@/common/schemas/add-reward.schema';
 import { UpdateRewardNameDto } from '@/common/dto/update-reward-name.dto';
-import { useAddRewardSchema } from '@/common/schemas/append-reward.schema';
+import { UpdateRewardQuantityDto } from '@/common/dto/update-reward-quantity.dto';
 import { useUpdateRewardNameSchema } from '@/common/schemas/update-reward-name.schema';
+import { useUpdateRewardQuantitySchema } from '@/common/schemas/update-reward-quantity.schema';
 
 @Controller({
   path: 'rewards',
@@ -39,6 +41,24 @@ export class RewardsController {
     }
 
     await this.rewardsService.updateName(reward, data.name);
+
+    return response.status(HTTP.OK).send();
+  }
+
+  @Patch(':id/update-quantity')
+  async updateQuantity(
+    @Param('id') id: string,
+    @Body(new YupValidationPipe(useUpdateRewardQuantitySchema()))
+    data: UpdateRewardQuantityDto,
+    @Response() response,
+  ) {
+    const reward = await this.rewardsService.findOne(id);
+
+    if (!reward) {
+      return response.statuts(HTTP.NOT_FOUND).send();
+    }
+
+    await this.rewardsService.updateQuantity(reward, data.quantity);
 
     return response.status(HTTP.OK).send();
   }
