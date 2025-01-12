@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { EntityManager, wrap } from '@mikro-orm/core';
+import { EntityManager } from '@mikro-orm/core';
 
 import { Reward } from '@/entities/reward.entity';
 import { AddRewardDto } from '@/common/dto/add-reward.dto';
@@ -20,8 +20,8 @@ export class RewardsService {
     return this.entityManager.findOne(Reward, uuid);
   }
 
-    wrap(reward).assign({ name });
   async updateName(reward: Reward, name) {
+    this.entityManager.assign(reward, { name });
 
     await this.entityManager.flush();
   }
