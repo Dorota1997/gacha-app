@@ -40,7 +40,7 @@ export class RewardsController {
       return response.status(HTTP.NOT_FOUND).send();
     }
 
-    await this.rewardsService.updateName(reward, data.name);
+    await this.rewardsService.updateSingleProperty(reward, 'name', data.name);
 
     return response.status(HTTP.OK).send();
   }
@@ -58,7 +58,11 @@ export class RewardsController {
       return response.status(HTTP.NOT_FOUND).send();
     }
 
-    await this.rewardsService.updateQuantity(reward, data.quantity);
+    await this.rewardsService.updateSingleProperty(
+      reward,
+      'quantity',
+      data.quantity,
+    );
 
     return response.status(HTTP.OK).send();
   }

@@ -20,14 +20,12 @@ export class RewardsService {
     return this.entityManager.findOne(Reward, id);
   }
 
-  async updateName(reward: Reward, name) {
-    this.entityManager.assign(reward, { name });
-
-    await this.entityManager.flush();
-  }
-
-  async updateQuantity(reward: Reward, quantity) {
-    this.entityManager.assign(reward, { quantity });
+  async updateSingleProperty<T>(
+    reward: Reward,
+    property: keyof Reward,
+    value: T,
+  ) {
+    this.entityManager.assign<Reward>(reward, { [property]: value });
 
     await this.entityManager.flush();
   }
