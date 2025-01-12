@@ -37,7 +37,7 @@ export class RewardsController {
     const reward = await this.rewardsService.findOne(id);
 
     if (!reward) {
-      return response.statuts(HTTP.NOT_FOUND).send();
+      return response.status(HTTP.NOT_FOUND).send();
     }
 
     await this.rewardsService.updateName(reward, data.name);
@@ -55,7 +55,7 @@ export class RewardsController {
     const reward = await this.rewardsService.findOne(id);
 
     if (!reward) {
-      return response.statuts(HTTP.NOT_FOUND).send();
+      return response.status(HTTP.NOT_FOUND).send();
     }
 
     await this.rewardsService.updateQuantity(reward, data.quantity);
