@@ -1,5 +1,13 @@
 import { StatusCodes as HTTP } from 'http-status-codes';
-import { Body, Controller, Param, Patch, Post, Response } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Param,
+  Patch,
+  Post,
+  Response,
+} from '@nestjs/common';
 
 import { RewardsService } from './rewards.service';
 import { AddRewardDto } from '@/common/dto/add-reward.dto';
@@ -89,5 +97,18 @@ export class RewardsController {
     );
 
     return response.status(HTTP.OK).send();
+  }
+
+  @Delete(':id')
+  async remove(@Param('id') id: string, @Response() response) {
+    const reward = await this.rewardsService.findOne(id);
+
+    if (!reward) {
+      return response.status(HTTP.NOT_FOUND).send();
+    }
+
+    await this.rewardsService.remove(reward);
+
+    return response.status(HTTP.NO_CONTENT).send();
   }
 }
