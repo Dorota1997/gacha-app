@@ -6,8 +6,10 @@ import { AddRewardDto } from '@/common/dto/add-reward.dto';
 import { YupValidationPipe } from '@/common/pipes/yup-validation.pipe';
 import { useAddRewardSchema } from '@/common/schemas/add-reward.schema';
 import { UpdateRewardNameDto } from '@/common/dto/update-reward-name.dto';
+import { UpdateRewardChanceDto } from '@/common/dto/update-reward-chance.dto';
 import { UpdateRewardQuantityDto } from '@/common/dto/update-reward-quantity.dto';
 import { useUpdateRewardNameSchema } from '@/common/schemas/update-reward-name.schema';
+import { useUpdateRewardChanceSchema } from '@/common/schemas/update-reward-chance.schema';
 import { useUpdateRewardQuantitySchema } from '@/common/schemas/update-reward-quantity.schema';
 
 @Controller({
@@ -62,6 +64,28 @@ export class RewardsController {
       reward,
       'quantity',
       data.quantity,
+    );
+
+    return response.status(HTTP.OK).send();
+  }
+
+  @Patch(':id/update-chance')
+  async updateChance(
+    @Param('id') id: string,
+    @Body(new YupValidationPipe(useUpdateRewardChanceSchema()))
+    data: UpdateRewardChanceDto,
+    @Response() response,
+  ) {
+    const reward = await this.rewardsService.findOne(id);
+
+    if (!reward) {
+      return response.status(HTTP.NOT_FOUND).send();
+    }
+
+    await this.rewardsService.updateSingleProperty(
+      reward,
+      'chance',
+      data.chance,
     );
 
     return response.status(HTTP.OK).send();
