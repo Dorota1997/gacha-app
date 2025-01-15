@@ -103,11 +103,9 @@ export class RewardsController {
   async remove(@Param('id') id: string, @Response() response) {
     const reward = await this.rewardsService.findOne(id);
 
-    if (!reward) {
-      return response.status(HTTP.NO_CONTENT).send();
+    if (reward) {
+      await this.rewardsService.remove(reward);
     }
-
-    await this.rewardsService.remove(reward);
 
     return response.status(HTTP.NO_CONTENT).send();
   }
