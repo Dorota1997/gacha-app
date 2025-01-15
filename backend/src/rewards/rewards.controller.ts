@@ -104,7 +104,7 @@ export class RewardsController {
     const reward = await this.rewardsService.findOne(id);
 
     if (!reward) {
-      return response.status(HTTP.NOT_FOUND).send();
+      return response.status(HTTP.NO_CONTENT).send();
     }
 
     await this.rewardsService.remove(reward);
