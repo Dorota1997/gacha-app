@@ -29,4 +29,8 @@ export class RewardsService {
 
     await this.entityManager.flush();
   }
+
+  remove(reward: Reward) {
+    return this.entityManager.removeAndFlush(reward);
+  }
 }
