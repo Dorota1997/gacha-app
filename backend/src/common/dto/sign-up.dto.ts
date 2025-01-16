@@ -1,5 +1,8 @@
+import { ApiProperty } from '@nestjs/swagger';
+
 import { SignInDto } from './sign-in.dto';
 
-export type SignUpDto = SignInDto & {
+export class SignUpDto extends SignInDto {
+  @ApiProperty()
   confirmPassword: string;
-};
+}
