@@ -10,7 +10,9 @@ import {
 } from '@nestjs/common';
 
 import { RewardsService } from './rewards.service';
+import { UserRole } from '@/common/enums/role.enum';
 import { AddRewardDto } from '@/common/dto/add-reward.dto';
+import { AdminRole } from '@/common/decorators/admin-role.decorator';
 import { YupValidationPipe } from '@/common/pipes/yup-validation.pipe';
 import { useAddRewardSchema } from '@/common/schemas/add-reward.schema';
 import { UpdateRewardNameDto } from '@/common/dto/update-reward-name.dto';
@@ -20,6 +22,7 @@ import { useUpdateRewardNameSchema } from '@/common/schemas/update-reward-name.s
 import { useUpdateRewardChanceSchema } from '@/common/schemas/update-reward-chance.schema';
 import { useUpdateRewardQuantitySchema } from '@/common/schemas/update-reward-quantity.schema';
 
+@AdminRole(UserRole.Admin)
 @Controller({
   path: 'rewards',
 })
