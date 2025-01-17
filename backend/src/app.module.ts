@@ -7,6 +7,7 @@ import { AuthModule } from '@/auth/auth.module';
 import { UsersModule } from '@/users/users.module';
 import { RewardsModule } from '@/rewards/rewards.module';
 import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
+import { AdminRoleGuard } from '@/common/guards/admin-role.guard';
 
 @Module({
   imports: [
@@ -22,6 +23,10 @@ import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
     {
       provide: APP_GUARD,
       useClass: JwtAuthGuard,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: AdminRoleGuard,
     },
   ],
 })
