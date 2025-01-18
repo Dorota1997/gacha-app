@@ -4,7 +4,6 @@ import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 
 import { Role } from '@/entities/role.entity';
 import { UserRole } from '@/common/enums/role.enum';
-import { ADMIN_KEY } from '@/common/decorators/admin.decorator';
 
 @Injectable()
 export class AdminGuard implements CanActivate {
@@ -14,12 +13,12 @@ export class AdminGuard implements CanActivate {
   ) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
-    const adminRole = this.reflector.getAllAndOverride<UserRole>(ADMIN_KEY, [
-      context.getHandler(),
-      context.getClass(),
-    ]);
+    const isAdminOnlyRequest = this.reflector.getAllAndOverride<boolean>(
+      UserRole.Admin,
+      [context.getHandler(), context.getClass()],
+    );
 
-    if (!adminRole) {
+    if (!isAdminOnlyRequest) {
       return true;
     }
 
@@ -29,6 +28,6 @@ export class AdminGuard implements CanActivate {
       users: { uuid: request.user.userId },
     });
 
-    return role.name === adminRole;
+    return role.name === UserRole.Admin;
   }
 }
