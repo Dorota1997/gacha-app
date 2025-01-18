@@ -26,16 +26,14 @@ export class AdminGuard implements CanActivate {
 
     const request = context.switchToHttp().getRequest();
 
-    if (request.user) {
-      const userRoleId = await (
-        await this.entityManager.findOne(User, request.user.userId)
-      ).role.uuid;
+    const userRoleId = await (
+      await this.entityManager.findOne(User, request.user.userId)
+    ).role.uuid;
 
-      const roleName = await (
-        await this.entityManager.findOne(Role, userRoleId)
-      ).name;
+    const roleName = await (
+      await this.entityManager.findOne(Role, userRoleId)
+    ).name;
 
-      return adminRole === roleName ? true : false;
-    }
+    return adminRole === roleName ? true : false;
   }
 }
