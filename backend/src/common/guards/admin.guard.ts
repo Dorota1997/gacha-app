@@ -3,7 +3,6 @@ import { EntityManager } from '@mikro-orm/core';
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 
 import { Role } from '@/entities/role.entity';
-import { User } from '@/entities/user.entity';
 import { UserRole } from '@/common/enums/role.enum';
 import { ADMIN_KEY } from '@/common/decorators/admin.decorator';
 
@@ -26,14 +25,10 @@ export class AdminGuard implements CanActivate {
 
     const request = context.switchToHttp().getRequest();
 
-    const userRoleId = await (
-      await this.entityManager.findOne(User, request.user.userId)
-    ).role.uuid;
+    const role = await this.entityManager.findOne(Role, {
+      users: { uuid: request.user.userId },
+    });
 
-    const roleName = await (
-      await this.entityManager.findOne(Role, userRoleId)
-    ).name;
-
-    return adminRole === roleName;
+    return role.name === adminRole;
   }
 }
