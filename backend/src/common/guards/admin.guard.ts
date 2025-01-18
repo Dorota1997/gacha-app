@@ -5,7 +5,7 @@ import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Role } from '@/entities/role.entity';
 import { User } from '@/entities/user.entity';
 import { UserRole } from '@/common/enums/role.enum';
-import { ROLE_KEY } from '@/common/decorators/admin-role.decorator';
+import { ADMIN_KEY } from '@/common/decorators/admin.decorator';
 
 @Injectable()
 export class AdminGuard implements CanActivate {
@@ -15,7 +15,7 @@ export class AdminGuard implements CanActivate {
   ) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
-    const adminRole = this.reflector.getAllAndOverride<UserRole>(ROLE_KEY, [
+    const adminRole = this.reflector.getAllAndOverride<UserRole>(ADMIN_KEY, [
       context.getHandler(),
       context.getClass(),
     ]);
