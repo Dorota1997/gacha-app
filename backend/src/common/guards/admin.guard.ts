@@ -34,6 +34,6 @@ export class AdminGuard implements CanActivate {
       await this.entityManager.findOne(Role, userRoleId)
     ).name;
 
-    return adminRole === roleName ? true : false;
+    return adminRole === roleName;
   }
 }
