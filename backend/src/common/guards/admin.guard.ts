@@ -8,7 +8,7 @@ import { UserRole } from '@/common/enums/role.enum';
 import { ROLE_KEY } from '@/common/decorators/admin-role.decorator';
 
 @Injectable()
-export class AdminRoleGuard implements CanActivate {
+export class AdminGuard implements CanActivate {
   constructor(
     private reflector: Reflector,
     private readonly entityManager: EntityManager,
