@@ -12,7 +12,7 @@ export class DevSeeder extends Seeder {
       name: UserRole.Admin,
     });
 
-    em.create(Role, {
+    const member = em.create(Role, {
       name: UserRole.Member,
     });
 
@@ -20,6 +20,12 @@ export class DevSeeder extends Seeder {
       username: 'test',
       password: '1234',
       role: admin,
+    });
+
+    em.create(User, {
+      username: 'member',
+      password: '1234',
+      role: member,
     });
   }
 }
