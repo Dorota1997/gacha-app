@@ -11,6 +11,7 @@ import {
 
 import { RewardsService } from './rewards.service';
 import { AddRewardDto } from '@/common/dto/add-reward.dto';
+import { Admin } from '@/common/decorators/admin.decorator';
 import { YupValidationPipe } from '@/common/pipes/yup-validation.pipe';
 import { useAddRewardSchema } from '@/common/schemas/add-reward.schema';
 import { UpdateRewardNameDto } from '@/common/dto/update-reward-name.dto';
@@ -20,6 +21,7 @@ import { useUpdateRewardNameSchema } from '@/common/schemas/update-reward-name.s
 import { useUpdateRewardChanceSchema } from '@/common/schemas/update-reward-chance.schema';
 import { useUpdateRewardQuantitySchema } from '@/common/schemas/update-reward-quantity.schema';
 
+@Admin()
 @Controller({
   path: 'rewards',
 })

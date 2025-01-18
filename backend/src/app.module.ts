@@ -6,6 +6,7 @@ import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { AuthModule } from '@/auth/auth.module';
 import { UsersModule } from '@/users/users.module';
 import { RewardsModule } from '@/rewards/rewards.module';
+import { AdminGuard } from '@/common/guards/admin.guard';
 import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
 
 @Module({
@@ -22,6 +23,10 @@ import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
     {
       provide: APP_GUARD,
       useClass: JwtAuthGuard,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: AdminGuard,
     },
   ],
 })

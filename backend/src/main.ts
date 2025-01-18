@@ -20,6 +20,15 @@ async function bootstrap() {
     .setDescription('The gatcha API description')
     .setVersion('1.0')
     .addTag('gatcha')
+    .addBearerAuth({
+      type: 'http',
+      scheme: 'bearer',
+      bearerFormat: 'JWT',
+      in: 'header',
+      name: 'Authorization',
+      description: 'Enter your Bearer token',
+    })
+    .addSecurityRequirements('bearer')
     .build();
 
   const documentFactory = () =>
