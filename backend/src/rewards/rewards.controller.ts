@@ -13,6 +13,7 @@ import {
 import { RewardsService } from './rewards.service';
 import { AddRewardDto } from '@/common/dto/add-reward.dto';
 import { Admin } from '@/common/decorators/admin.decorator';
+import { Public } from '@/common/decorators/public.decorator';
 import { YupValidationPipe } from '@/common/pipes/yup-validation.pipe';
 import { useAddRewardSchema } from '@/common/schemas/add-reward.schema';
 import { UpdateRewardNameDto } from '@/common/dto/update-reward-name.dto';
@@ -36,6 +37,15 @@ export class RewardsController {
 
     return response.status(HTTP.OK).send(rewards);
   }
+
+  @Get()
+  @Public()
+  async fetchAll(@Response() response) {
+    const rewards = await this.rewardsService.findAll();
+
+    return response.status(HTTP.OK).send(rewards);
+  }
+
   @Post()
   async create(
     @Body(new YupValidationPipe(useAddRewardSchema()))

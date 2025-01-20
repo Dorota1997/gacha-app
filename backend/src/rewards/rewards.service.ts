@@ -4,12 +4,17 @@ import { EntityManager } from '@mikro-orm/core';
 import { Reward } from '@/entities/reward.entity';
 import { AddRewardDto } from '@/common/dto/add-reward.dto';
 import { GetRewardDto } from '@/common/dto/get-reward.dto';
+import { GetUserRewardDto } from '@/common/dto/get-user-reward.dto';
 
 @Injectable()
 export class RewardsService {
   constructor(private readonly entityManager: EntityManager) {}
 
   async findAllForAdmin(): Promise<GetRewardDto[]> {
+    return this.entityManager.findAll(Reward);
+  }
+
+  async findAll(): Promise<GetUserRewardDto[]> {
     return this.entityManager.findAll(Reward);
   }
 
