@@ -3,6 +3,7 @@ import {
   Body,
   Controller,
   Delete,
+  Get,
   Param,
   Patch,
   Post,
@@ -28,6 +29,13 @@ import { useUpdateRewardQuantitySchema } from '@/common/schemas/update-reward-qu
 export class RewardsController {
   constructor(private readonly rewardsService: RewardsService) {}
 
+  @Get('for-admin')
+  @Admin()
+  async fetchAllForAdmin(@Response() response) {
+    const rewards = await this.rewardsService.findAllForAdmin();
+
+    return response.status(HTTP.OK).send(rewards);
+  }
   @Post()
   async create(
     @Body(new YupValidationPipe(useAddRewardSchema()))
