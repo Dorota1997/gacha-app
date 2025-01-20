@@ -23,7 +23,6 @@ import { useUpdateRewardNameSchema } from '@/common/schemas/update-reward-name.s
 import { useUpdateRewardChanceSchema } from '@/common/schemas/update-reward-chance.schema';
 import { useUpdateRewardQuantitySchema } from '@/common/schemas/update-reward-quantity.schema';
 
-@Admin()
 @Controller({
   path: 'rewards',
 })
@@ -47,6 +46,7 @@ export class RewardsController {
   }
 
   @Post()
+  @Admin()
   async create(
     @Body(new YupValidationPipe(useAddRewardSchema()))
     data: AddRewardDto,
@@ -58,6 +58,7 @@ export class RewardsController {
   }
 
   @Patch(':id/update-name')
+  @Admin()
   async updateName(
     @Param('id') id: string,
     @Body(new YupValidationPipe(useUpdateRewardNameSchema()))
@@ -76,6 +77,7 @@ export class RewardsController {
   }
 
   @Patch(':id/update-quantity')
+  @Admin()
   async updateQuantity(
     @Param('id') id: string,
     @Body(new YupValidationPipe(useUpdateRewardQuantitySchema()))
@@ -98,6 +100,7 @@ export class RewardsController {
   }
 
   @Patch(':id/update-chance')
+  @Admin()
   async updateChance(
     @Param('id') id: string,
     @Body(new YupValidationPipe(useUpdateRewardChanceSchema()))
@@ -120,6 +123,7 @@ export class RewardsController {
   }
 
   @Delete(':id')
+  @Admin()
   async remove(@Param('id') id: string, @Response() response) {
     const reward = await this.rewardsService.findOne(id);
 
