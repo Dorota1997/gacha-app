@@ -8,6 +8,14 @@ import { AddRewardDto } from '@/common/dto/add-reward.dto';
 export class RewardsService {
   constructor(private readonly entityManager: EntityManager) {}
 
+  async findAll(arg = { includeChance: false }) {
+    const { includeChance } = arg;
+
+    return this.entityManager.findAll(Reward, {
+      exclude: includeChance ? undefined : ['chance'],
+    });
+  }
+
   async save({ name, quantity, chance }: AddRewardDto): Promise<Reward> {
     const reward = new Reward(name, quantity, chance);
 
