@@ -13,7 +13,6 @@ import {
 import { RewardsService } from './rewards.service';
 import { AddRewardDto } from '@/common/dto/add-reward.dto';
 import { Admin } from '@/common/decorators/admin.decorator';
-import { Public } from '@/common/decorators/public.decorator';
 import { YupValidationPipe } from '@/common/pipes/yup-validation.pipe';
 import { useAddRewardSchema } from '@/common/schemas/add-reward.schema';
 import { UpdateRewardNameDto } from '@/common/dto/update-reward-name.dto';
@@ -29,10 +28,10 @@ import { useUpdateRewardQuantitySchema } from '@/common/schemas/update-reward-qu
 export class RewardsController {
   constructor(private readonly rewardsService: RewardsService) {}
 
-  @Get('for-admin')
+  @Get('uncut')
   @Admin()
   async fetchAllForAdmin(@Response() response) {
-    const rewards = await this.rewardsService.findAllForAdmin();
+    const rewards = await this.rewardsService.findAll({ includeChance: true });
 
     return response.status(HTTP.OK).send(rewards);
   }
