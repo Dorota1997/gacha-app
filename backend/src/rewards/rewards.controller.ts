@@ -28,8 +28,8 @@ import { useUpdateRewardQuantitySchema } from '@/common/schemas/update-reward-qu
 export class RewardsController {
   constructor(private readonly rewardsService: RewardsService) {}
 
-  @Get('uncut')
   @Admin()
+  @Get('uncut')
   async fetchAllForAdmin(@Response() response) {
     const rewards = await this.rewardsService.findAll({ includeChance: true });
 
@@ -43,8 +43,8 @@ export class RewardsController {
     return response.status(HTTP.OK).send(rewards);
   }
 
-  @Post()
   @Admin()
+  @Post()
   async create(
     @Body(new YupValidationPipe(useAddRewardSchema()))
     data: AddRewardDto,
@@ -55,8 +55,8 @@ export class RewardsController {
     return response.status(HTTP.CREATED).send(reward);
   }
 
-  @Patch(':id/update-name')
   @Admin()
+  @Patch(':id/update-name')
   async updateName(
     @Param('id') id: string,
     @Body(new YupValidationPipe(useUpdateRewardNameSchema()))
@@ -74,8 +74,8 @@ export class RewardsController {
     return response.status(HTTP.OK).send();
   }
 
-  @Patch(':id/update-quantity')
   @Admin()
+  @Patch(':id/update-quantity')
   async updateQuantity(
     @Param('id') id: string,
     @Body(new YupValidationPipe(useUpdateRewardQuantitySchema()))
@@ -97,8 +97,8 @@ export class RewardsController {
     return response.status(HTTP.OK).send();
   }
 
-  @Patch(':id/update-chance')
   @Admin()
+  @Patch(':id/update-chance')
   async updateChance(
     @Param('id') id: string,
     @Body(new YupValidationPipe(useUpdateRewardChanceSchema()))
@@ -120,8 +120,8 @@ export class RewardsController {
     return response.status(HTTP.OK).send();
   }
 
-  @Delete(':id')
   @Admin()
+  @Delete(':id')
   async remove(@Param('id') id: string, @Response() response) {
     const reward = await this.rewardsService.findOne(id);
 
