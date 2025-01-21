@@ -19,7 +19,6 @@ async function bootstrap() {
     .setTitle('Gatcha')
     .setDescription('The gatcha API description')
     .setVersion('1.0')
-    .addTag('gatcha')
     .addBearerAuth({
       type: 'http',
       scheme: 'bearer',

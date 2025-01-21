@@ -1,3 +1,4 @@
+import { ApiTags } from '@nestjs/swagger';
 import { StatusCodes as HTTP } from 'http-status-codes';
 import { Get, Body, Post, Request, Response, Controller } from '@nestjs/common';
 
@@ -7,6 +8,7 @@ import { Public } from '@/common/decorators/public.decorator';
 import { signInSchema } from '@/common/schemas/sign-in.schema';
 import { YupValidationPipe } from '@/common/pipes/yup-validation.pipe';
 
+@ApiTags('Auth')
 @Controller({
   path: 'auth',
 })

@@ -1,3 +1,4 @@
+import { ApiTags } from '@nestjs/swagger';
 import { StatusCodes as HTTP } from 'http-status-codes';
 import {
   Body,
@@ -22,6 +23,7 @@ import { useUpdateRewardNameSchema } from '@/common/schemas/update-reward-name.s
 import { useUpdateRewardChanceSchema } from '@/common/schemas/update-reward-chance.schema';
 import { useUpdateRewardQuantitySchema } from '@/common/schemas/update-reward-quantity.schema';
 
+@ApiTags('Rewards')
 @Controller({
   path: 'rewards',
 })
