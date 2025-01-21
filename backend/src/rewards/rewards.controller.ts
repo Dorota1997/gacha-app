@@ -38,7 +38,6 @@ export class RewardsController {
   }
 
   @Get()
-  @Public()
   async fetchAll(@Response() response) {
     const rewards = await this.rewardsService.findAll();
 
