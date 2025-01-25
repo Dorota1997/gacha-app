@@ -1,0 +1,14 @@
+<form [formGroup]="loginForm">
+    <div class="flex justify-content-center">
+        <div class="flex">
+            <input pInputText formControlName="username" type="text" pSize="small" placeholder="Username" />
+        </div>
+        <div class="flex">
+            <p-password formControlName="password" type="text" size="small" placeholder="Password" />
+        </div>
+
+        <div class="flex">
+            <p-button label="Save" variant="outlined" (click)="login()" />
+        </div>
+    </div>
+</form>
