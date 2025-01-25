@@ -16,6 +16,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'main',
+    loadComponent: () =>
+      import('./pages/main/main.component').then(
+        (component) => component.MainComponent
+      ),
+  },
+  {
     path: '',
     loadComponent: () =>
       import('./pages/header/header.component').then(
