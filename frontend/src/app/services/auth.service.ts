@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 
-import { ISignIn } from '../interfaces/sign-in.interface';
-import { environment } from '../../environments/environment.development';
+import { ISignIn } from '@interfaces/sign-in.interface';
+import { environment } from 'environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
