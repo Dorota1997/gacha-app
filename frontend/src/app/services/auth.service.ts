@@ -14,6 +14,7 @@ export class AuthService {
 
   signIn(body: ISignIn) {
     return this.httpClient.post(`${this.apiUrl}/sign-in`, body);
+  }
 
   getStatus() {
     return this.httpClient.get<IStatus>(`${this.apiUrl}/status`);
