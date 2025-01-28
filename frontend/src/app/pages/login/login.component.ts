@@ -31,9 +31,14 @@ export class LoginComponent {
 
   login() {
     this.authService.signIn(this.loginForm.value).subscribe({
-      next: () => {
+      next: (value) => {
+        this.saveToken(JSON.stringify(value));
         this.router.navigate(['/main']);
       },
     });
+  }
+
+  private saveToken(token: string) {
+    localStorage.setItem('token', token);
   }
 }
