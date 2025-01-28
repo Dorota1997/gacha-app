@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 
+import { IStatus } from '@interfaces/status.interface';
 import { ISignIn } from '@interfaces/sign-in.interface';
 import { environment } from 'environments/environment.development';
 
@@ -13,5 +14,8 @@ export class AuthService {
 
   signIn(body: ISignIn) {
     return this.httpClient.post(`${this.apiUrl}/sign-in`, body);
+
+  getStatus() {
+    return this.httpClient.get<IStatus>(`${this.apiUrl}/status`);
   }
 }
