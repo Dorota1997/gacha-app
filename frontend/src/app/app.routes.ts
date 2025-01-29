@@ -1,5 +1,7 @@
 import { Routes } from '@angular/router';
 
+import { StatusResolverService } from '@services/status-resolver.service';
+
 export const routes: Routes = [
   {
     path: 'header',
@@ -17,6 +19,7 @@ export const routes: Routes = [
   },
   {
     path: 'main',
+    resolve: { status: StatusResolverService },
     loadComponent: () =>
       import('./pages/main/main.component').then(
         (component) => component.MainComponent
