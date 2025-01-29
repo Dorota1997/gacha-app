@@ -22,7 +22,6 @@
       "@components/*": ["app/pages/*"],
       "@services/*": ["app/services/*"],
       "@interfaces/*": ["app/interfaces/*"],
-      "@environments/*": ["app/environments/*"],
       "@interceptors/*": ["app/interceptors/*"]
     }
   },
