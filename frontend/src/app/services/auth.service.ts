@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 
 import { IStatus } from '@interfaces/status.interface';
 import { ISignIn } from '@interfaces/sign-in.interface';
+import { ILoggedIn } from '@interfaces/logged-in.interface';
 import { environment } from 'environments/environment.development';
 
 @Injectable({
@@ -13,7 +14,7 @@ export class AuthService {
   private apiUrl = environment.apiUrl + 'auth';
 
   signIn(body: ISignIn) {
-    return this.httpClient.post(`${this.apiUrl}/sign-in`, body);
+    return this.httpClient.post<ILoggedIn>(`${this.apiUrl}/sign-in`, body);
   }
 
   getStatus() {
