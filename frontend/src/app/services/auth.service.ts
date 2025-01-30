@@ -14,10 +14,14 @@ export class AuthService {
   private apiUrl = environment.apiUrl + 'auth';
 
   signIn(body: ISignIn) {
-    return this.httpClient.post<IUserDto>(`${this.apiUrl}/sign-in`, body);
+    return this.httpClient.post<IUserDto>(`${this.apiUrl}/sign-in`, body, {
+      withCredentials: true,
+    });
   }
 
   getStatus() {
-    return this.httpClient.get<IStatus>(`${this.apiUrl}/status`);
+    return this.httpClient.get<IStatus>(`${this.apiUrl}/status`, {
+      withCredentials: true,
+    });
   }
 }
