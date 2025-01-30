@@ -29,6 +29,10 @@ export class AuthController {
 
     const result = this.authService.signUser(user);
 
+    response.cookie('JWT.COOKIE_KEY', result.token, {
+      httpOnly: true,
+    });
+
     return response.status(HTTP.OK).send(result);
   }
 
