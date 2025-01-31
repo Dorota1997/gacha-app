@@ -12,16 +12,20 @@ import { environment } from 'environments/environment.development';
 export class AuthService {
   private httpClient = inject(HttpClient);
   private apiUrl = environment.apiUrl + 'auth';
+  private httpOptions = { withCredentials: true };
 
   signIn(body: ISignIn) {
-    return this.httpClient.post<IUserDto>(`${this.apiUrl}/sign-in`, body, {
-      withCredentials: true,
-    });
+    return this.httpClient.post<IUserDto>(
+      `${this.apiUrl}/sign-in`,
+      body,
+      this.httpOptions
+    );
   }
 
   getStatus() {
-    return this.httpClient.get<IStatus>(`${this.apiUrl}/status`, {
-      withCredentials: true,
-    });
+    return this.httpClient.get<IStatus>(
+      `${this.apiUrl}/status`,
+      this.httpOptions
+    );
   }
 }
