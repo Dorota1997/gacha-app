@@ -10,16 +10,16 @@ import { AppModule } from '@/app.module';
 import { Config } from '@/common/enums/config.enum';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, {
-    cors: {
-      credentials: true,
-      origin: ['http://localhost:4200'],
-    },
-  });
+  const app = await NestFactory.create(AppModule);
 
   app.use(cookieParser());
 
   const configService = app.get(ConfigService);
+
+  app.enableCors({
+    credentials: true,
+    origin: [configService.get(Config.CORS_ORIGIN)],
+  });
 
   const port = configService.get(Config.PORT);
 
