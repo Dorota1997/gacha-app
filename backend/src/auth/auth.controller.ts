@@ -45,6 +45,7 @@ export class AuthController {
   @Post('sign-out')
   signOut(@Response() response) {
     response.clearCookie(Config.JWT_COOKIE_KEY);
+
     return response.status(HTTP.OK).send();
   }
 }
