@@ -6,26 +6,26 @@ import { PassportStrategy } from '@nestjs/passport';
 
 import { Config } from '@/common/enums/config.enum';
 
-const extractorJWT = (request: Request) => {
-  if (
-    request.cookies &&
-    Config.JWT_COOKIE_KEY in request.cookies &&
-    request.cookies[Config.JWT_COOKIE_KEY].length > 0
-  ) {
-    return request.cookies[Config.JWT_COOKIE_KEY];
-  }
+const jwtFromRequest = ExtractJwt.fromExtractors([
+  (request: Request) => {
+    if (
+      request.cookies &&
+      Config.JWT_COOKIE_KEY in request.cookies &&
+      request.cookies[Config.JWT_COOKIE_KEY].length > 0
+    ) {
+      return request.cookies[Config.JWT_COOKIE_KEY];
+    }
 
-  return null;
-};
+    return null;
+  },
+  ExtractJwt.fromAuthHeaderAsBearerToken(),
+]);
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(configService: ConfigService) {
     super({
-      jwtFromRequest: ExtractJwt.fromExtractors([
-        extractorJWT,
-        ExtractJwt.fromAuthHeaderAsBearerToken(),
-      ]),
+      jwtFromRequest,
       ignoreExpiration: false,
       secretOrKey: configService.get(Config.JWT_SECRET),
     });
