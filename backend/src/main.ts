@@ -18,7 +18,7 @@ async function bootstrap() {
 
   app.enableCors({
     credentials: true,
-    origin: [configService.get(Config.CORS_ORIGIN)],
+    origin: [configService.get(Config.CLIENT_URL)],
   });
 
   const port = configService.get(Config.PORT);
