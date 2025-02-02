@@ -10,7 +10,9 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 
 import { routes } from './app.routes';
 import { providePrimeNG } from 'primeng/config';
-import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { AuthInterceptor } from '@interceptors/auth.interceptor';
+import { environment } from 'environments/environment.development';
+import { BaseUrlInterceptor } from '@interceptors/base-url-interceptor.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -27,5 +29,14 @@ export const appConfig: ApplicationConfig = {
     }),
     provideHttpClient(withInterceptorsFromDi()),
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: BaseUrlInterceptor,
+      multi: true,
+    },
+    {
+      provide: 'BASE_API_URL',
+      useValue: environment.apiUrl,
+    },
   ],
 };
