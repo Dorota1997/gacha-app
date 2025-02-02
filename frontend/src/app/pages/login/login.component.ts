@@ -11,11 +11,18 @@ import { ButtonModule } from 'primeng/button';
 import { PasswordModule } from 'primeng/password';
 import { InputTextModule } from 'primeng/inputtext';
 import { AuthService } from '@services/auth.service';
+import { HeaderComponent } from '@components/header/header.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [InputTextModule, ReactiveFormsModule, PasswordModule, ButtonModule],
+  imports: [
+    InputTextModule,
+    ReactiveFormsModule,
+    PasswordModule,
+    ButtonModule,
+    HeaderComponent,
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
