@@ -7,7 +7,7 @@ import {
   HttpInterceptor,
   HttpRequest,
 } from '@angular/common/http';
-import { catchError, Observable, of, throwError } from 'rxjs';
+import { catchError, Observable, of } from 'rxjs';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -17,17 +17,6 @@ export class AuthInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    // @TMP
-    const token = localStorage.getItem('token');
-
-    if (token) {
-      request = request.clone({
-        setHeaders: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-    }
-
     return next.handle(request).pipe(
       catchError((error) => {
         if (error instanceof HttpErrorResponse) {

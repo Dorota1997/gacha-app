@@ -11,7 +11,6 @@ import { ButtonModule } from 'primeng/button';
 import { PasswordModule } from 'primeng/password';
 import { InputTextModule } from 'primeng/inputtext';
 import { AuthService } from '@services/auth.service';
-import { IUserDto } from '@interfaces/logged-in.interface';
 
 @Component({
   selector: 'app-login',
@@ -32,14 +31,9 @@ export class LoginComponent {
 
   login() {
     this.authService.signIn(this.loginForm.value).subscribe({
-      next: (value: IUserDto) => {
-        this.saveToken(value.token);
+      next: () => {
         this.router.navigate(['/main']);
       },
     });
-  }
-
-  private saveToken(token: string) {
-    localStorage.setItem('token', token);
   }
 }

@@ -3,6 +3,7 @@ import { StatusCodes as HTTP } from 'http-status-codes';
 import { Get, Body, Post, Request, Response, Controller } from '@nestjs/common';
 
 import { AuthService } from './auth.service';
+import { Config } from '@/common/enums/config.enum';
 import { SignInDto } from '@/common/dto/sign-in.dto';
 import { Public } from '@/common/decorators/public.decorator';
 import { signInSchema } from '@/common/schemas/sign-in.schema';
@@ -29,6 +30,10 @@ export class AuthController {
 
     const result = this.authService.signUser(user);
 
+    response.cookie(Config.JWT_COOKIE_KEY, result.token, {
+      httpOnly: true,
+    });
+
     return response.status(HTTP.OK).send(result);
   }
 
@@ -39,6 +44,8 @@ export class AuthController {
 
   @Post('sign-out')
   signOut(@Response() response) {
+    response.clearCookie(Config.JWT_COOKIE_KEY);
+
     return response.status(HTTP.OK).send();
   }
 }

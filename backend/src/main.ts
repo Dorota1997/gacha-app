@@ -1,17 +1,25 @@
-import 'module-alias/register';
 import 'reflect-metadata';
+import 'module-alias/register';
+import * as cookieParser from 'cookie-parser';
 
-import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
+import { ConfigService } from '@nestjs/config';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 import { AppModule } from '@/app.module';
 import { Config } from '@/common/enums/config.enum';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, { cors: true });
+  const app = await NestFactory.create(AppModule);
+
+  app.use(cookieParser());
 
   const configService = app.get(ConfigService);
+
+  app.enableCors({
+    credentials: true,
+    origin: [configService.get(Config.CLIENT_URL)],
+  });
 
   const port = configService.get(Config.PORT);
 
