@@ -4,13 +4,6 @@ import { StatusResolverService } from '@services/status-resolver.service';
 
 export const routes: Routes = [
   {
-    path: 'header',
-    loadComponent: () =>
-      import('./pages/header/header.component').then(
-        (component) => component.HeaderComponent
-      ),
-  },
-  {
     path: 'login',
     loadComponent: () =>
       import('./pages/login/login.component').then(
@@ -28,8 +21,8 @@ export const routes: Routes = [
   {
     path: '',
     loadComponent: () =>
-      import('./pages/header/header.component').then(
-        (component) => component.HeaderComponent
+      import('./pages/login/login.component').then(
+        (component) => component.LoginComponent
       ),
   },
 ];
