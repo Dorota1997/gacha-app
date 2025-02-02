@@ -17,6 +17,7 @@ export class BaseUrlInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     const apiRequest = request.clone({
       url: `${this.baseUrl}${request.url}`,
+      withCredentials: true,
     });
 
     return next.handle(apiRequest);
