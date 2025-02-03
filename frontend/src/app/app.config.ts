@@ -12,7 +12,7 @@ import { routes } from './app.routes';
 import { providePrimeNG } from 'primeng/config';
 import { AuthInterceptor } from '@interceptors/auth.interceptor';
 import { environment } from 'environments/environment.development';
-import { BaseUrlInterceptor } from '@interceptors/base-url-interceptor.interceptor';
+import { BaseUrlInterceptor } from '@interceptors/base-url.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
