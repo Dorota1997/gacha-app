@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-describe('baseUrlInterceptorInterceptor', () => {
+describe('baseUrlInterceptor', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({});
   });
