@@ -7,8 +7,8 @@ import {
   Validators,
 } from '@angular/forms';
 
+import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
-import { PasswordModule } from 'primeng/password';
 import { InputTextModule } from 'primeng/inputtext';
 import { AuthService } from '@services/auth.service';
 import { HeaderComponent } from '@components/header/header.component';
@@ -19,9 +19,9 @@ import { HeaderComponent } from '@components/header/header.component';
   imports: [
     InputTextModule,
     ReactiveFormsModule,
-    PasswordModule,
     ButtonModule,
     HeaderComponent,
+    CardModule,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
