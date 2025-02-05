@@ -14,7 +14,7 @@ import { AuthService } from '@services/auth.service';
 import { HeaderComponent } from '@components/header/header.component';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-guest',
   standalone: true,
   imports: [
     InputTextModule,
@@ -23,10 +23,10 @@ import { HeaderComponent } from '@components/header/header.component';
     HeaderComponent,
     CardModule,
   ],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css',
+  templateUrl: './guest.component.html',
+  styleUrl: './guest.component.css',
 })
-export class LoginComponent {
+export class GuestComponent {
   private authService = inject(AuthService);
   private router = inject(Router);
   private formBuilder = inject(FormBuilder);
@@ -39,7 +39,7 @@ export class LoginComponent {
   login() {
     this.authService.signIn(this.loginForm.value).subscribe({
       next: () => {
-        this.router.navigate(['/main']);
+        this.router.navigate(['/dashboard']);
       },
     });
   }
