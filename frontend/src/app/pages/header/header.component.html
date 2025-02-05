@@ -1,4 +1,6 @@
-<div class="flex justify-content-end flex-wrap">
-    <p-button class="flex align-items-center justify-content-center font-bold border-round m-2" label="Sign in"
-        (click)="navigateToLogin()" />
-</div>
+<p-menubar>
+    <ng-template #end>
+        <p-button class="mr-2" label="Sign in" variant="text" severity="secondary" (click)="navigateToLogin()" />
+        <p-button label="Sign up" variant="text" severity="secondary" />
+    </ng-template>
+</p-menubar>
