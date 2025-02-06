@@ -18,4 +18,8 @@ export const routes: Routes = [
         (component) => component.GuestComponent
       ),
   },
+  {
+    path: '**',
+    redirectTo: '',
+  },
 ];
