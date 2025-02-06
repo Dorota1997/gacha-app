@@ -1,27 +1,5 @@
-<app-header />
-
-<div class="flex justify-content-center align-items-center flex-wrap h-full">
-    <p-card header="Sign in" [style]="{ width: '33rem', height: '60vh' }">
-        <div class="flex mb-4">
-            Please enter your details
         </div>
-
-        <form [formGroup]="loginForm">
-            <div class="flex flex-column align-content-end flex-grow-1">
-                <div class="flex align-items-center justify-content-center w-full mb-4">
-                    <input pInputText formControlName="username" type="text" pSize="small" class="w-full"
-                        styleClass="w-full" placeholder="Username" />
                 </div>
-
-                <div class="flex align-items-center justify-content-center w-full mb-4">
-                    <input pInputText formControlName="password" type="password" size="small" placeholder="Password"
-                        class="w-full" styleClass="w-full" />
                 </div>
-
-                <div class="w-full">
-                    <p-button label="Sign In" variant="outlined" (click)="login()" class="w-full" styleClass="w-full" />
                 </div>
-            </div>
-        </form>
-    </p-card>
 </div>

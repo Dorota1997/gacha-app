@@ -1,13 +1,11 @@
 import { Router } from '@angular/router';
 import { Component, inject } from '@angular/core';
 
-import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
-import { MenubarModule } from 'primeng/menubar';
 
 @Component({
   selector: 'app-header',
-  imports: [ButtonModule, MenubarModule, CommonModule],
+  imports: [CommonModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
