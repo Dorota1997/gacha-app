@@ -4,25 +4,22 @@ import { StatusResolverService } from '@services/status-resolver.service';
 
 export const routes: Routes = [
   {
-    path: 'login',
-    loadComponent: () =>
-      import('./pages/login/login.component').then(
-        (component) => component.LoginComponent
-      ),
-  },
-  {
-    path: 'main',
+    path: 'dashboard',
     resolve: { status: StatusResolverService },
     loadComponent: () =>
-      import('./pages/main/main.component').then(
-        (component) => component.MainComponent
+      import('./pages/dashboard/dashboard.component').then(
+        (component) => component.DashboardComponent
       ),
   },
   {
     path: '',
     loadComponent: () =>
-      import('./pages/login/login.component').then(
-        (component) => component.LoginComponent
+      import('./pages/guest/guest.component').then(
+        (component) => component.GuestComponent
       ),
+  },
+  {
+    path: '**',
+    redirectTo: '',
   },
 ];
