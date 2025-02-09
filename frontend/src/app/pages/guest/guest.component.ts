@@ -7,22 +7,12 @@ import {
   Validators,
 } from '@angular/forms';
 
-import { CardModule } from 'primeng/card';
-import { ButtonModule } from 'primeng/button';
-import { InputTextModule } from 'primeng/inputtext';
 import { AuthService } from '@services/auth.service';
-import { HeaderComponent } from '@components/header/header.component';
 
 @Component({
   selector: 'app-guest',
   standalone: true,
-  imports: [
-    InputTextModule,
-    ReactiveFormsModule,
-    ButtonModule,
-    HeaderComponent,
-    CardModule,
-  ],
+  imports: [ReactiveFormsModule],
   templateUrl: './guest.component.html',
   styleUrl: './guest.component.css',
 })
