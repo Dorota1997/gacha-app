@@ -20,10 +20,17 @@ export class GuestComponent {
   private authService = inject(AuthService);
   private router = inject(Router);
   private formBuilder = inject(FormBuilder);
+  isLogged = false;
 
   loginForm: FormGroup = this.formBuilder.group({
     username: ['', Validators.required],
     password: ['', Validators.required],
+  });
+
+  registerForm: FormGroup = this.formBuilder.group({
+    username: ['', Validators.required],
+    password: ['', Validators.required],
+    confirmPassword: ['', Validators.required],
   });
 
   login() {
