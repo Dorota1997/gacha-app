@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 
 import { AuthService } from '@services/auth.service';
+import { UsersService } from '@services/users.service';
 
 @Component({
   selector: 'app-guest',
@@ -18,6 +19,7 @@ import { AuthService } from '@services/auth.service';
 })
 export class GuestComponent {
   private authService = inject(AuthService);
+  private usersService = inject(UsersService);
   private router = inject(Router);
   private formBuilder = inject(FormBuilder);
   isLogged = false;
