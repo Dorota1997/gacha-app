@@ -1,3 +1,4 @@
+import { map } from 'rxjs';
 import { Router } from '@angular/router';
 import { Component, inject } from '@angular/core';
 import {
@@ -41,5 +42,22 @@ export class GuestComponent {
         this.router.navigate(['/dashboard']);
       },
     });
+  }
+
+  register() {
+    this.usersService
+      .signUp(this.registerForm.value)
+      .pipe(
+        map((data) => {
+          if (data) {
+            this.loginForm.patchValue({
+              username: this.registerForm.get('username')?.value,
+              password: this.registerForm.get('password')?.value,
+            });
+            this.login();
+          }
+        })
+      )
+      .subscribe();
   }
 }
