@@ -1,0 +1,24 @@
+<form class="card-body" [formGroup]="signInForm">
+    <div class="form-control">
+        <label class="label">
+            <span class="label-text">Username</span>
+        </label>
+        <input type="text" placeholder="Username" formControlName="username" class="input input-bordered" required />
+    </div>
+    <div class="form-control">
+        <label class="label">
+            <span class="label-text">Password</span>
+        </label>
+        <input type="password" placeholder="Password" formControlName="password" class="input input-bordered"
+            required />
+        <label class="label">
+            <span class="label-text-alt">
+                Don't have an account yet?
+                <span class="link link-hover" (click)="showSignUpForm()">Create Account</span>
+            </span>
+        </label>
+    </div>
+    <div class="form-control mt-6">
+        <button class="btn btn-primary" (click)="signIn()">Sign in</button>
+    </div>
+</form>
