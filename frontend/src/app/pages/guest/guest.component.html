@@ -2,17 +2,17 @@
     <div class="hero-content flex-col lg:flex-row-reverse w-full">
         <div class="text-center lg:text-left">
             <h1 class="text-5xl font-bold">
-                @if (isSignInFormActive) { Register now! } @else { Login now! }
+                @if (isSignUpFormActive) { Register now! } @else { Login now! }
             </h1>
             <p class="py-6">
                 Please enter your details!
             </p>
         </div>
         <div class="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-            @if (isSignInFormActive) {
+            @if (isSignUpFormActive) {
             <app-sign-up-form></app-sign-up-form>
             } @else {
-            <app-sign-in-form (click)="isSignInFormActive = true"></app-sign-in-form>
+            <app-sign-in-form (click)="isSignUpFormActive = true"></app-sign-in-form>
             }
         </div>
     </div>

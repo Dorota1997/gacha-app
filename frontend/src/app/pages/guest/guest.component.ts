@@ -12,5 +12,5 @@ import { SignUpFormComponent } from '@components/sign-up-form/sign-up-form.compo
   styleUrl: './guest.component.css',
 })
 export class GuestComponent {
-  isSignInFormActive = false;
+  isSignUpFormActive = false;
 }
