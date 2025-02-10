@@ -1,63 +1,18 @@
 <div class="hero bg-base-200 min-h-screen">
     <div class="hero-content flex-col lg:flex-row-reverse w-full">
         <div class="text-center lg:text-left">
-            <h1 class="text-5xl font-bold">@if (isLogged) { Register now! } @else { Login now! }</h1>
+            <h1 class="text-5xl font-bold">
+                @if (isSignInFormActive) { Register now! } @else { Login now! }
+            </h1>
             <p class="py-6">
                 Please enter your details!
             </p>
         </div>
         <div class="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-            @if (isLogged) {
-            <form class="card-body" [formGroup]="registerForm">
-                <div class="form-control">
-                    <label class="label">
-                        <span class="label-text">Username</span>
-                    </label>
-                    <input type="text" placeholder="Username" formControlName="username" class="input input-bordered"
-                        required />
-                </div>
-                <div class="form-control">
-                    <label class="label">
-                        <span class="label-text">Password</span>
-                    </label>
-                    <input type="password" placeholder="Password" formControlName="password"
-                        class="input input-bordered" required />
-                    <label class="label">
-                        <span class="label-text">Confirm password</span>
-                    </label>
-                    <input type="password" placeholder="Confirm password" formControlName="confirmPassword"
-                        class="input input-bordered" required />
-                </div>
-                <div class="form-control mt-6">
-                    <button class="btn btn-primary" (click)="register()">Sign up</button>
-                </div>
-            </form>
+            @if (isSignInFormActive) {
+            <app-sign-up-form></app-sign-up-form>
             } @else {
-            <form class="card-body" [formGroup]="loginForm">
-                <div class="form-control">
-                    <label class="label">
-                        <span class="label-text">Username</span>
-                    </label>
-                    <input type="text" placeholder="Username" formControlName="username" class="input input-bordered"
-                        required />
-                </div>
-                <div class="form-control">
-                    <label class="label">
-                        <span class="label-text">Password</span>
-                    </label>
-                    <input type="password" placeholder="Password" formControlName="password"
-                        class="input input-bordered" required />
-                    <label class="label">
-                        <span class="label-text-alt">
-                            Don't have an account yet?
-                            <span class="link link-hover" (click)="isLogged = true">Create Account</span>
-                        </span>
-                    </label>
-                </div>
-                <div class="form-control mt-6">
-                    <button class="btn btn-primary" (click)="login()">Sign in</button>
-                </div>
-            </form>
+            <app-sign-in-form (click)="isSignInFormActive = true"></app-sign-in-form>
             }
         </div>
     </div>
