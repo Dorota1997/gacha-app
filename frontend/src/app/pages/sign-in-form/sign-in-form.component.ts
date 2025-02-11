@@ -33,8 +33,4 @@ export class SignInFormComponent {
       },
     });
   }
-
-  showSignUpForm() {
-    this.click.emit(true);
-  }
 }
