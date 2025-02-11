@@ -10,7 +10,7 @@
         </div>
         <div class="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
             @if (isSignUpFormActive) {
-            <app-sign-up-form></app-sign-up-form>
+            <app-sign-up-form (click)="isSignUpFormActive = false"></app-sign-up-form>
             } @else {
             <app-sign-in-form (click)="isSignUpFormActive = true"></app-sign-in-form>
             }

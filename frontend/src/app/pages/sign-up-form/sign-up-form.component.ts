@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -19,6 +19,7 @@ export class SignUpFormComponent {
   private usersService = inject(UsersService);
   private formBuilder = inject(FormBuilder);
   private router = inject(Router);
+  @Output() click = new EventEmitter<boolean>();
 
   signUpForm: FormGroup = this.formBuilder.group({
     username: ['', Validators.required],
