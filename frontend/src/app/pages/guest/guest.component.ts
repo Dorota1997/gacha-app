@@ -1,36 +1,16 @@
-import { Router } from '@angular/router';
-import { Component, inject } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { Component } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
-import { AuthService } from '@services/auth.service';
+import { SignInFormComponent } from '@components/sign-in-form/sign-in-form.component';
+import { SignUpFormComponent } from '@components/sign-up-form/sign-up-form.component';
 
 @Component({
   selector: 'app-guest',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, SignInFormComponent, SignUpFormComponent],
   templateUrl: './guest.component.html',
   styleUrl: './guest.component.css',
 })
 export class GuestComponent {
-  private authService = inject(AuthService);
-  private router = inject(Router);
-  private formBuilder = inject(FormBuilder);
-
-  loginForm: FormGroup = this.formBuilder.group({
-    username: ['', Validators.required],
-    password: ['', Validators.required],
-  });
-
-  login() {
-    this.authService.signIn(this.loginForm.value).subscribe({
-      next: () => {
-        this.router.navigate(['/dashboard']);
-      },
-    });
-  }
+  isSignUpFormActive = false;
 }

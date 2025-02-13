@@ -1,0 +1,31 @@
+<form class="card-body" [formGroup]="signUpForm">
+    <div class="form-control">
+        <label class="label">
+            <span class="label-text">Username</span>
+        </label>
+        <input type="text" placeholder="Username" formControlName="username" class="input input-bordered" required />
+    </div>
+    <div class="form-control">
+        <label class="label">
+            <span class="label-text">Password</span>
+        </label>
+        <input type="password" placeholder="Password" formControlName="password" class="input input-bordered"
+            required />
+        <label class="label">
+            <span class="label-text">Confirm password</span>
+        </label>
+        <!-- @TODO check if confirmPassword matches password -->
+        <input type="password" placeholder="Confirm password" formControlName="confirmPassword"
+            class="input input-bordered" required />
+
+        <label class="label">
+            <span class="label-text-alt">
+                Have account already?
+                <span class="link link-hover" (click)="click.emit(false)">Click here to sign in</span>
+            </span>
+        </label>
+    </div>
+    <div class="form-control mt-6">
+        <button class="btn btn-primary" (click)="signUp()">Sign up</button>
+    </div>
+</form>
