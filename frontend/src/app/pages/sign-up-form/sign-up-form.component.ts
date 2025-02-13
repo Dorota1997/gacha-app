@@ -1,4 +1,3 @@
-import { Router } from '@angular/router';
 import { Component, EventEmitter, inject, Output } from '@angular/core';
 import {
   FormBuilder,
@@ -18,7 +17,6 @@ import { UsersService } from '@services/users.service';
 export class SignUpFormComponent {
   private usersService = inject(UsersService);
   private formBuilder = inject(FormBuilder);
-  private router = inject(Router);
   @Output() click = new EventEmitter<boolean>();
 
   signUpForm: FormGroup = this.formBuilder.group({
@@ -28,10 +26,6 @@ export class SignUpFormComponent {
   });
 
   signUp() {
-    this.usersService.signUp(this.signUpForm.value).subscribe({
-      next: () => {
-        this.router.navigate(['/dashboard']);
-      },
-    });
+    this.usersService.signUp(this.signUpForm.value).subscribe();
   }
 }
