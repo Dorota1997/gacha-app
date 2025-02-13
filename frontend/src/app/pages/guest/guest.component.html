@@ -12,13 +12,9 @@
     </div>
     <div class="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
       @if (isSignUpFormActive) {
-        <app-sign-up-form
-          (navigateToForm)="isSignUpFormActive = false"
-        ></app-sign-up-form>
+        <app-sign-up-form (navigateToForm)="isSignUpFormActive = false" />
       } @else {
-        <app-sign-in-form
-          (navigateToForm)="isSignUpFormActive = true"
-        ></app-sign-in-form>
+        <app-sign-in-form (navigateToForm)="isSignUpFormActive = true" />
       }
     </div>
   </div>
