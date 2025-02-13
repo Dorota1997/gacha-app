@@ -14,7 +14,11 @@ module.exports = [
     languageOptions: {
       parser: typescriptParser,
       parserOptions: {
-        project: ['./tsconfig.json', './tsconfig.app.json', './tsconfig.spec.json'],
+        project: [
+          './tsconfig.json',
+          './tsconfig.app.json',
+          './tsconfig.spec.json',
+        ],
       },
     },
     plugins: {
@@ -43,7 +47,6 @@ module.exports = [
         },
       ],
       'import/order': 'off',
-      '@typescript-eslint/no-explicit-any': ['off'],
       '@typescript-eslint/member-ordering': 0,
       '@typescript-eslint/naming-convention': 0,
       '@angular-eslint/no-host-metadata-property': 'off',
@@ -66,10 +69,10 @@ module.exports = [
       'prettier/prettier': [
         'error',
         {
-          'singleQuote': true,
-          'parser': 'flow'
+          singleQuote: true,
+          parser: 'flow',
         },
-      ]
+      ],
     },
   },
   eslintPluginPrettierRecommended,

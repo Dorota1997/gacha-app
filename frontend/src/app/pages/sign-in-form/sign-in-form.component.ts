@@ -18,7 +18,7 @@ export class SignInFormComponent {
   private formBuilder = inject(FormBuilder);
   private authService = inject(AuthService);
   private router = inject(Router);
-  @Output() click = new EventEmitter<boolean>();
+  @Output() navigateToForm = new EventEmitter<boolean>();
 
   signInForm: FormGroup = this.formBuilder.group({
     username: ['', Validators.required],

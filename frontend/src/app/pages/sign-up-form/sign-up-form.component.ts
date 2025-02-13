@@ -17,7 +17,7 @@ import { UsersService } from '@services/users.service';
 export class SignUpFormComponent {
   private usersService = inject(UsersService);
   private formBuilder = inject(FormBuilder);
-  @Output() click = new EventEmitter<boolean>();
+  @Output() navigateToForm = new EventEmitter<boolean>();
 
   signUpForm: FormGroup = this.formBuilder.group({
     username: ['', Validators.required],

@@ -5,14 +5,15 @@
   "printWidth": 80,
   "tabWidth": 2,
   "endOfLine": "auto",
-   "bracketSpacing": true,
+  "bracketSpacing": true,
   "overrides": [
     {
       "files": "*.scss",
       "options": {
         "singleQuote": false
       }
-    },  {
+    },
+    {
       "files": "*.html",
       "options": {
         "printWidth": 80
@@ -20,3 +21,4 @@
     }
   ]
 }
+
