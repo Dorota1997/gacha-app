@@ -1,3 +1,5 @@
+import { concatMap } from 'rxjs';
+import { Router } from '@angular/router';
 import { Component, EventEmitter, inject, Output } from '@angular/core';
 import {
   FormBuilder,
@@ -6,6 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 
+import { AuthService } from '@services/auth.service';
 import { UsersService } from '@services/users.service';
 
 @Component({
@@ -16,7 +19,9 @@ import { UsersService } from '@services/users.service';
 })
 export class SignUpFormComponent {
   private usersService = inject(UsersService);
+  private authService = inject(AuthService);
   private formBuilder = inject(FormBuilder);
+  private router = inject(Router);
   @Output() navigateToForm = new EventEmitter<boolean>();
 
   signUpForm: FormGroup = this.formBuilder.group({
@@ -26,6 +31,20 @@ export class SignUpFormComponent {
   });
 
   signUp() {
-    this.usersService.signUp(this.signUpForm.value).subscribe();
+    const signUpFormValue = this.signUpForm.value;
+
+    this.usersService
+      .signUp(signUpFormValue)
+      .pipe(
+        concatMap(() => {
+          delete signUpFormValue.confirmPassword;
+          return this.authService.signIn(signUpFormValue);
+        })
+      )
+      .subscribe({
+        next: () => {
+          this.router.navigate(['/dashboard']);
+        },
+      });
   }
 }
