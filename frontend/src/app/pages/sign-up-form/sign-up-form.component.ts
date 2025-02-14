@@ -10,6 +10,7 @@ import {
 
 import { AuthService } from '@services/auth.service';
 import { UsersService } from '@services/users.service';
+import { ISignUp } from '@interfaces/sign-up.interface';
 
 @Component({
   selector: 'app-sign-up-form',
@@ -31,16 +32,12 @@ export class SignUpFormComponent {
   });
 
   signUp() {
-    const signUpFormValue = this.signUpForm.value;
+    const { confirmPassword, ...signInPayload }: ISignUp =
+      this.signUpForm.value;
 
     this.usersService
-      .signUp(signUpFormValue)
-      .pipe(
-        concatMap(() => {
-          delete signUpFormValue.confirmPassword;
-          return this.authService.signIn(signUpFormValue);
-        })
-      )
+      .signUp({ ...signInPayload, confirmPassword })
+      .pipe(concatMap(() => this.authService.signIn(signInPayload)))
       .subscribe({
         next: () => {
           this.router.navigate(['/dashboard']);
