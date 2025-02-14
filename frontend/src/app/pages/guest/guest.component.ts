@@ -6,7 +6,6 @@ import { SignUpFormComponent } from '@components/sign-up-form/sign-up-form.compo
 
 @Component({
   selector: 'app-guest',
-  standalone: true,
   imports: [ReactiveFormsModule, SignInFormComponent, SignUpFormComponent],
   templateUrl: './guest.component.html',
   styleUrl: './guest.component.css',

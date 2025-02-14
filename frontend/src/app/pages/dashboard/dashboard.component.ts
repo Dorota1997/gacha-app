@@ -1,5 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { AuthService } from '@services/auth.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,10 +6,4 @@ import { AuthService } from '@services/auth.service';
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })
-export class DashboardComponent implements OnInit {
-  private authService = inject(AuthService);
-
-  ngOnInit(): void {
-    this.authService.getRewards().subscribe();
-  }
-}
+export class DashboardComponent {}

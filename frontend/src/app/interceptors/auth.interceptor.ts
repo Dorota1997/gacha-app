@@ -1,4 +1,5 @@
 import { Router } from '@angular/router';
+import { catchError, Observable, of } from 'rxjs';
 import { inject, Injectable } from '@angular/core';
 import {
   HttpErrorResponse,
@@ -7,16 +8,15 @@ import {
   HttpInterceptor,
   HttpRequest,
 } from '@angular/common/http';
-import { catchError, Observable, of } from 'rxjs';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   private router = inject(Router);
 
   intercept(
-    request: HttpRequest<any>,
+    request: HttpRequest<unknown>,
     next: HttpHandler
-  ): Observable<HttpEvent<any>> {
+  ): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
       catchError((error) => {
         if (error instanceof HttpErrorResponse) {
