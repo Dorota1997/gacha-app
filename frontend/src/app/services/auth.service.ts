@@ -15,11 +15,15 @@ export class AuthService {
   signIn(body: ISignIn) {
     return this.httpClient.post<IUserDto>(
       `${this.controllerName}/sign-in`,
-      body
+      body,
     );
   }
 
   getStatus() {
     return this.httpClient.get<IStatus>(`${this.controllerName}/status`);
+  }
+
+  signOut() {
+    return this.httpClient.post(`${this.controllerName}/sign-out`, {});
   }
 }
