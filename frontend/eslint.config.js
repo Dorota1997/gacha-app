@@ -70,7 +70,6 @@ module.exports = [
         'error',
         {
           singleQuote: true,
-          parser: 'flow',
         },
       ],
     },
