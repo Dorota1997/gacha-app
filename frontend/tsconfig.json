@@ -22,7 +22,8 @@
       "@components/*": ["app/pages/*"],
       "@services/*": ["app/services/*"],
       "@interfaces/*": ["app/interfaces/*"],
-      "@interceptors/*": ["app/interceptors/*"]
+      "@interceptors/*": ["app/interceptors/*"],
+      "@layout/*": ["app/layout/*"]
     }
   },
   "angularCompilerOptions": {
