@@ -17,12 +17,11 @@ export class NavbarComponent implements OnInit, OnDestroy {
   private router = inject(Router);
   private statusService = inject(StatusResolverService);
   private destroy$ = new Subject<void>();
-  userName = signal<string>('');
 
   ngOnInit(): void {
     this.statusService.userStatus$.pipe(takeUntil(this.destroy$)).subscribe({
       next: (status: IStatus) => {
-        this.userName.set(status.username);
+        this.username.set(status.username);
       },
     });
   }
