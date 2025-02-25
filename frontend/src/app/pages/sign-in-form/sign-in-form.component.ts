@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { AuthService } from '@services/auth.service';
-import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { Component, inject, output } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -18,7 +18,7 @@ export class SignInFormComponent {
   private formBuilder = inject(FormBuilder);
   private authService = inject(AuthService);
   private router = inject(Router);
-  @Output() navigateToForm = new EventEmitter<boolean>();
+  navigateToForm = output<boolean>();
 
   signInForm: FormGroup = this.formBuilder.group({
     username: ['', Validators.required],
