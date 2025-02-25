@@ -10,19 +10,17 @@ import { IStatus } from '@interfaces/status.interface';
 })
 export class StatusResolverService implements Resolve<IStatus> {
   private authService = inject(AuthService);
-  private userStatusSubject: BehaviorSubject<IStatus> =
-    new BehaviorSubject<IStatus>({
-      userId: '',
-      username: '',
-    });
+  private userSubject: BehaviorSubject<IStatus> = new BehaviorSubject<IStatus>({
+    userId: '',
+    username: '',
+  });
 
-  public userStatus$: Observable<IStatus> =
-    this.userStatusSubject.asObservable();
+  public user$: Observable<IStatus> = this.userSubject.asObservable();
 
   resolve(): Observable<IStatus> {
     return this.authService.getStatus().pipe(
       tap((value: IStatus) => {
-        this.userStatusSubject.next(value);
+        this.userSubject.next(value);
       }),
     );
   }

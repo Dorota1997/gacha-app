@@ -20,7 +20,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   username = signal<string>('');
 
   ngOnInit(): void {
-    this.statusService.userStatus$.pipe(takeUntil(this.destroy$)).subscribe({
+    this.statusService.user$.pipe(takeUntil(this.destroy$)).subscribe({
       next: (status: IStatus) => {
         this.username.set(status.username);
       },
