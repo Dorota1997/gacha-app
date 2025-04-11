@@ -1,6 +1,6 @@
 import { concatMap } from 'rxjs';
 import { Router } from '@angular/router';
-import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { Component, inject, output } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -23,7 +23,7 @@ export class SignUpFormComponent {
   private authService = inject(AuthService);
   private formBuilder = inject(FormBuilder);
   private router = inject(Router);
-  @Output() navigateToForm = new EventEmitter<boolean>();
+  navigateToForm = output<boolean>();
 
   signUpForm: FormGroup = this.formBuilder.group({
     username: ['', Validators.required],
