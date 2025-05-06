@@ -1,0 +1,20 @@
+<div class="overflow-x-auto">
+  <table class="table table-zebra">
+    <thead>
+      <tr>
+        @for (column of columns() ?? []; track column) {
+          <th>{{ column | titlecase }}</th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+      @for (row of data() ?? []; track row) {
+        <tr>
+          @for (col of columns() ?? []; track col) {
+            <td>{{ row[col] }}</td>
+          }
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
